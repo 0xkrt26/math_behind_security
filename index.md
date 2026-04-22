@@ -1,5 +1,5 @@
 ---
-title: Welcome to my blog!
+title: Welcome to my math blog!
 ---
 
-Math is cool!
+The math behind why encryption works — and why it sometimes doesn't.
