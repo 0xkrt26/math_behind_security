@@ -1,4 +1,7 @@
-Searching smarter - Plagiarism Detection with Rolling Hashes
+---
+title: "Searching smarter - Plagiarism Detection with Rolling Hashes"
+date: 2026-04-25
+---
 
 1987 Michael O. Rabin and Richard M. Karp introduced rolling hashes and polynomial hashing — concepts that reappear throughout modern cryptography and are widely used for plagiarism detection.
 
