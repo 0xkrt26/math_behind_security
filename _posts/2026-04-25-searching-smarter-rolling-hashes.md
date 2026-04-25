@@ -36,11 +36,13 @@ Now Rabin-Karp algorithm uses what's called rolling hash function that is much f
 
 ### What makes Rolling Hash function faster?
 
-It works pretty simply. Instead of calculating a hash function for each triple from scratch, Rolling hash function calculates the next hash value with old hash value using this formula:
+It works pretty simply. Instead of checking every letter in a triple, you treat the triple as a whole. Imagine you're a detective looking for a criminal (specific face) among suspects. Naive comparison is like checking every facial feature of every suspect one by one: first eyes, then nose, then mouth. Using a hash is like comparing the complete face at once.
+
+And we don't even have to calculate a hash function for each triple from scratch! Rolling hash function calculates the next hash value based on the old hash value using this formula:
 ```
 	Hnew = (b*(Hold -c1*b^(n-1))+cnew) mod p,
 ```
-which basically removes first character of the triple and adds the next one.
+which just basically removes first character of the triple and adds the next one.
 
 ### Is Rabin-Karp algorithm always efficient?
 
