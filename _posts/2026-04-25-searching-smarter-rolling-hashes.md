@@ -110,6 +110,8 @@ Depends on the alphabet you're using. Usually the value of b is 256, which cover
 
 Even though the Rabin-Karp algorithm is nowadays used primarily for spell checking and bio-informatics, just like other string matching algorithms, it can also be used in network intrusion detection systems to verify the data packets traveling through the network or in digital forensics to find evidence within digital data. Rabin-Karp algorithm introduced a concept of polynomial hashing, however, cryptographic hashing required fundamentally different construction that we'll talk about next time.
 
+*P.S. This post was partially inspired by [The Evolution of Hashing Algorithms](https://guptadeepak.com/the-evolution-of-hashing-algorithms-from-md5-to-modern-day/). It credits Rabin-Karp as the origin of hashing history, which, as i found out after a deeper research, isn't quite accurate. Hashing goes back further than 1987, but that's a story for the next post.*
+
 ### My sources and further readings: 
 [MIT Rabin-Karp Algorithm](https://people.csail.mit.edu/alinush/6.006-spring-2014/rec06-rabin-karp-spring2011.pdf)
 [MIT Pigeonhole](https://math.mit.edu/~fgotti/docs/Courses/C.%20Combinatorial%20Analysis/1.%20Pigeonhole%20Principle/Pigeonhole%20Principle.pdf)
