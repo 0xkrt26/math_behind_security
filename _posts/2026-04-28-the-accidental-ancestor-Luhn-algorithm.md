@@ -26,7 +26,7 @@ but if the original number was 7, its substitution would be
 ```
 ### Step 2.  
 
-Replace every digit on an odd position from the left by its substitution. 
+Starting from the first digit on the right and moving left, replace every other digit with its substitution. Later the check digit will be appended in its original form on the rightmost position. This way we can avoid unnecessary calculations, as we won't have to calculate its substitution.
 ```
 3846205 -> 6886401
 ```
@@ -51,9 +51,8 @@ etc
 
 ### Step 4.
 
-Append this check digit to the number from step 2.
+Append this check digit to the rightmost position of the number from step 2.
 
-The check digit should be appended in its original form, therefore on an even position. In our example, just like in the original device, it's the last, 8th one.
 ```
 68864017
 ```
