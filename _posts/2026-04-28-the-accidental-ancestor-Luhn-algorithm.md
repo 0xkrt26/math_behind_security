@@ -113,6 +113,7 @@ As it was an internal IBM memo, it doesn't have any public access, therefore all
 
 The mathematics behind Luhn's concept for such information storage had to be modified later to improve transformation, guarantee even distribution and minimize collisions. [Rabin-Karp algorithm](https://0xkrt26.github.io/math_behind_security/2026/04/25/searching-smarter-rolling-hashes.html) that I've already written about provides some solutions to these problems. 
 
+### My sources and further readings: 
 [IEEE Article about Hans Peter Luhn](https://spectrum.ieee.org/hans-peter-luhn-and-the-birth-of-the-hashing-algorithm) 
 [Luhn's Patent on a Computer for Verifying Numbers](https://docs.google.com/viewer?url=patentimages.storage.googleapis.com/pdfs/US2950048.pdf)
 [Luhn "A new method of recording and searching information"](https://fermatslibrary.com/s/a-new-method-of-recording-and-searching-information)
