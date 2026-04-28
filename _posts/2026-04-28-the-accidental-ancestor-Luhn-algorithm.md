@@ -3,7 +3,7 @@ title: "The Accidental Ancestor — How a Computer for Verifying Numbers Shaped 
 date: 2026-04-28
 ---
 
-1954. Hans Peter Luhn filed for a US patent on a Computer for Verifying Numbers. This is one of the earliest examples of using mathematical transformations to verify data integrity, a 
+1954, Hans Peter Luhn filed for a US patent on a Computer for Verifying Numbers. This is one of the earliest examples of using mathematical transformations to verify data integrity, a 
 concept that became a foundation for modern hashes. Today you can find it under names Luhn Algorithm, Luhn Formula or Modulus 10 Algorithm.
 
 ### How does this algorithm work?
