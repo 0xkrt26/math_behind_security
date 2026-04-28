@@ -63,17 +63,17 @@ Not exactly, the number of collisions (preferably their absence) depends primari
 ```
 p = 7,
 
-	then 1 mod 7 = 1
-	2 mod 7 = 2
-	3 mod 7 = 3
-		 ...
-		 6 mod 7 = 6
-		 7 mod 7 = 0
+then 1 mod 7 = 1
+2 mod 7 = 2
+3 mod 7 = 3
+...
+6 mod 7 = 6
+7 mod 7 = 0
 	
-	and...
-	all over again: 8 mod 7 = 1
-					9 mod 7 = 2
-					etc.
+and...
+all over again: 8 mod 7 = 1
+9 mod 7 = 2
+etc.
 ```
 Which gives us only seven unique values. Now if we took p = 23, we would have had 23 unique values. And so on. The bigger prime number we take, the less likely we will have repetitions. But also keep in mind that it shouldn't be too big, otherwise it can lead to performance issues.
 
