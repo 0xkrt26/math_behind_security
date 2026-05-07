@@ -1,1 +1,9 @@
+How is my data secured? How was it kept safe throughout history? Can I decrypt it without a key?
+
+At school these questions wouldn't leave me alone, so I sat down and wrote a program that would break a Vigenère cipher (mostly by combining pieces of code I found that were supposed to do it). Later they led me to apply to Technical University of Munich (TUM) to study Computer Science. And eventually, they're what helped me realize I belong in Mathematics instead.
+
+So this [blog](https://0xkrt26.github.io/math_behind_security/) is a side project for my TUM Math application. It goes like this: I pick a topic from the intersection of mathematics and cybersecurity, research it properly, and then break it down here the way I used to explain math to my classmates before our  Math Abi. No unnecessary complexity, just the idea itself, as clearly as I can.
+
+(And now each post comes with an [implementation](https://github.com/0xkrt26/math_behind_security/tree/main/implementations))
+If you've ever wondered why encryption actually works (or how it gets broken) you're in the right place.
 
