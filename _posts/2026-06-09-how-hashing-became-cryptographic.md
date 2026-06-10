@@ -3,7 +3,7 @@ title: "Chopped, Stored, Secured — How Hashing Became Cryptographic"
 date: 2026-06-09
 ---
 
-<div style="font-style: italic; color: #967bb6;">
+<div style="font-style: italic; color: #734f96;">
 	
 A Python implementation for all of these algorithms is available in my <a href="https://github.com/0xkrt26/math_behind_security/blob/main/implementations/dumey_polynom_exponent_hash.py">GitHub repository</a>.
 
