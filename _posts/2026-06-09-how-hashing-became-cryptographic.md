@@ -3,7 +3,7 @@ title: "Chopped, Stored, Secured — How Hashing Became Cryptographic"
 date: 2026-06-09
 ---
 
-<div style="font-style: italic; color: #3474B4;">
+<div style="font-style: italic; color: #b19cd9;">
 	
 A Python implementation for all of these algorithms is available in my <a href="https://github.com/0xkrt26/math_behind_security/blob/main/implementations/dumey_polynom_exponent_hash.py">GitHub repository</a>.
 
@@ -40,7 +40,7 @@ In our example, the numeric value of the word "BOX" is
 
 $$2 \times 37^2 + 15 \times 37^1 + 24 \times 37^0 = 2738 + 555 + 24 = 3317$$
 
-<div style="font-style: italic; color: #3474B4;">
+<div style="font-style: italic; color: #b19cd9;">
 
 Early computer systems and punched tapes primarily dealt with letters and numbers only: 26 letters of the English alphabet, plus 10 numbers, and a space add up to 37 available symbols.
 
@@ -69,7 +69,7 @@ There's none. Later indexing will be called a polynomial hash, which we've alrea
 
 Not really. The idea is the same: use mathematics to transform data. However, the goal now is to also make that data protected from attackers. 
 
-<div style="font-style: italic; color: #3474B4;">
+<div style="font-style: italic; color: #b19cd9;">
 
 The definition of the cryptographic hash that I'll give here is based on a very interesting paper, <a href="https://www.cs.jhu.edu/~rubin/courses/sp03/papers/diffie.hellman.pdf">"New Directions in Cryptography"(1976)</a> by Whitfield Diffie and Martin E. Hellman. It's engaging, easy to read, and covers not only cryptographic hashing but also RSA, so I can really recommend it for further readings.
 
@@ -80,7 +80,7 @@ The definition of the cryptographic hash that I'll give here is based on a very 
 
 Hash is a value used to secure vulnerable data. For example, websites store your login information as a hash, not as plain text, to protect it from being stolen by an attacker. When you register, you enter the password (PW) for the first time. The website produces a hash by using a one-way function f(x), also called a hash function, and stores f(PW). For each of your further logins, the website will calculate f(x) with the data you enter. Only if f(x) equals f(PW) will the password be accepted.
 
-<div style="font-style: italic; color: #3474B4;">
+<div style="font-style: italic; color: #b19cd9;">
 
 Since your password can still be stolen on its way from your computer to the website, password hashing is usually used together with encryption protocols like TLS to protect your data in transit.
 
@@ -91,7 +91,7 @@ Since your password can still be stolen on its way from your computer to the web
 
 The main property of the one-way function that creates a hash is its irreversibility. It's computationally impossible to go back from hash to plain text even if you have the function used for the transformation. 
 
-<div style="font-style: italic; color: #3474B4;">
+<div style="font-style: italic; color: #b19cd9;">
 
 Computationally means that even with the most powerful computer, it will take ages to find the original value
 
