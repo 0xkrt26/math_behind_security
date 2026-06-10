@@ -4,6 +4,7 @@ date: 2026-06-09
 ---
 
 Peter Luhn came up with the idea of [using math to verify and store information](https://0xkrt26.github.io/math_behind_security/2026/04/28/the-accidental-ancestor-Luhn-algorithm.html), [Birthday problem](https://0xkrt26.github.io/math_behind_security/2026/05/08/birthday-problem.html) explains the collisions in Hash tables, [Rabin-Karp algorithm](https://0xkrt26.github.io/math_behind_security/2026/04/25/searching-smarter-rolling-hashes.html) uses rolling hash to search strings. We've talked so much about hash, yet not a single time was the definition of the hash function itself provided.
+
 <br>
 ### When did hashing first appeared?
 
@@ -28,6 +29,7 @@ Let's take the word "BOX" as an example. We can convert it, as Dumey suggests, i
 Then we multiply them by powers of 37.
 
 In our example, the numeric value of the word "BOX" is
+
 <br>
 $$2 \times 37^2 + 15 \times 37^1 + 24 \times 37^0 = 2738 + 555 + 24 = 3317$$
 
@@ -124,10 +126,12 @@ In school algebra, we got used to working with infinite fields, where the graph 
 The fewer collisions there're, the better. Imagine there's another X that gives f(X)=f(PW). In this case it doesn't matter which value the attacker finds, X or PW. Since f(X)=f(PW), he will still successfully pass the login. 
 
 Another problem has emerged recently. Remember how we said that it was computationally impossible to reverse the one-way function? Not anymore. Quantum computers exceed the limits of modern computers, making brute force much faster. This creates a need for post-quantum cryptography.
+
 <br>
 ### What else can hash be used for? 
 
 Other applications of a cryptographically secure hash function include digital signatures for document verification and blockchain. (We'll cover them in more detail next time.)
+
 <br>
 ### My sources and further readings: 
 [Arnold Dumey "Computers and Automation"](http://bitsavers.informatik.uni-stuttgart.de/magazines/Computers_And_Automation/195612.pdf)<br>
