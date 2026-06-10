@@ -3,6 +3,13 @@ title: "Chopped, Stored, Secured — How Hashing Became Cryptographic"
 date: 2026-06-09
 ---
 
+<div style="font-style: italic; color: #3474B4;">
+	
+A Python implementation for all of these algorithms is available in my [GitHub repository](https://github.com/0xkrt26/math_behind_security/blob/main/implementations/dumey_polynom_exponent_hash.py).
+
+</div>
+<br> 
+
 Peter Luhn came up with the idea of [using math to verify and store information](https://0xkrt26.github.io/math_behind_security/2026/04/28/the-accidental-ancestor-Luhn-algorithm.html), [Birthday problem](https://0xkrt26.github.io/math_behind_security/2026/05/08/birthday-problem.html) explains the collisions in Hash tables, [Rabin-Karp algorithm](https://0xkrt26.github.io/math_behind_security/2026/04/25/searching-smarter-rolling-hashes.html) uses rolling hash to search strings. We've talked so much about hash, yet not a single time was the definition of the hash function itself provided.
 
 <br>
