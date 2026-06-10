@@ -1,5 +1,5 @@
 ---
-title: "Chopped, Stored, Secured — How Hashing Became Cryptographic"
+title: "Chopped, Stored, Secured — The Story of the Hash Function"
 date: 2026-06-09
 ---
 
