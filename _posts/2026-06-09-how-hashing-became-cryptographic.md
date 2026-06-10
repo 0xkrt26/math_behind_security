@@ -6,16 +6,16 @@ date: 2026-06-09
 Peter Luhn came up with the idea of [using math to verify and store information](https://0xkrt26.github.io/math_behind_security/2026/04/28/the-accidental-ancestor-Luhn-algorithm.html), [Birthday problem](https://0xkrt26.github.io/math_behind_security/2026/05/08/birthday-problem.html) explains the collisions in Hash tables, [Rabin-Karp algorithm](https://0xkrt26.github.io/math_behind_security/2026/04/25/searching-smarter-rolling-hashes.html) uses rolling hash to search strings. We've talked so much about hash, yet not a single time was the definition of the hash function itself provided.
 
 
-###When did hashing first appeared?
+### When did hashing first appeared?
 
 In 1956 the idea of hashing was for the first time defined by Arnold Dumey. His passion for cryptography since 14 and mathematics degree from Columbia University brought him first to the US Army Signal Corps, then to Potter Instrument (printer producing company also interested in engineering of computer memory). Later in his [interview for the Charles Babbage Institute](https://conservancy.umn.edu/server/api/core/bitstreams/fa424683-eaf2-4563-a504-6f4d31720aed/content) Dumey said: "I wrote a paper, which was the first paper on hash coding, based on the work I did there [at Potter Instrument]". In that paper, Dumey described the concept of using a mathematical transformation to map data to memory addresses for faster search and called it indexing. 
 
 
-###How did indexing work?
+### How did indexing work?
 
 In his paper, Dumey gave clear instructions. 
 
-###1. To store a word in memory, first transform it into a number.
+### 1. To store a word in memory, first transform it into a number.
 	
 Let's take the word "BOX" as an example. We can convert it, as Dumey suggests, into a base 37 number or just use ASCII. We will go with the first option. To do that, we map letters to their alphabetical positions
 
@@ -39,11 +39,11 @@ Early computer systems and punched tapes primarily dealt with letters and number
 </div>
 <br>
 
-###2. Find a prime number slightly less than the number of addressable locations.
+### 2. Find a prime number slightly less than the number of addressable locations.
 
 In our example, we will have 100 addressable locations. In this case, the nearest prime number is 97. 
 		
-###3. Divide the numeric value by the prime number...
+### 3. Divide the numeric value by the prime number...
 
 ...then throw away the quotient and use the remainder. In other words, perform our favorite modulo operation!
 
@@ -52,12 +52,12 @@ In our example, we will have 100 addressable locations. In this case, the neares
 This means the word "BOX" will be stored at memory address 19.
 
 
-###What's the difference between indexing and hashing?
+### What's the difference between indexing and hashing?
 
 There's none. Later indexing will be called a polynomial hash, which we've already covered in [Rabin-Karp algorithm](https://0xkrt26.github.io/math_behind_security/2026/04/25/searching-smarter-rolling-hashes.html) a few weeks ago. The word *hash* itself originates in the French word *hacher* ("to chop", "to mince") which pretty much reflects what a hash function does with information before storing it in memory. For some time it was just a widespread jargon among cryptographers.  In the late 1960s, the term *hash* appeared officially for the first time in Herbert Hellerman's "Digital Computer System Principles".
 
 
-###So that's how cryptographic hashes work?
+### So that's how cryptographic hashes work?
 
 Not really. The idea is the same: use mathematics to transform data. However, the goal now is to also make that data protected from attackers. 
 
@@ -68,7 +68,7 @@ The definition of the cryptographic hash that I'll give here is based on a very 
 </div>
 <br>
 
-###So what is a cryptographic hash?
+### So what is a cryptographic hash?
 
 Hash is a value used to secure vulnerable data. For example, websites store your login information as a hash, not as plain text, to protect it from being stolen by an attacker. When you register, you enter the password (PW) for the first time. The website produces a hash by using a one-way function f(x), also called a hash function, and stores f(PW). For each of your further logins, the website will calculate f(x) with the data you enter. Only if f(x) equals f(PW) will the password be accepted.
 
@@ -79,7 +79,7 @@ Since your password can still be stolen on its way from your computer to the web
 </div>
 <br>
 
-###Why is storing f(PW) safer than storing PW?
+### Why is storing f(PW) safer than storing PW?
 
 The main property of the one-way function that creates a hash is its irreversibility. It's computationally impossible to go back from hash to plain text even if you have the function used for the transformation. 
 
@@ -90,11 +90,11 @@ Computationally means that even with the most powerful computer, it will take ag
 </div>
 <br>
 
-###Why would it be so hard to reverse a hash function?
+### Why would it be so hard to reverse a hash function?
 
 At school we learned that every function has an inverse function: addition is reversed by subtraction, multiplication by division, an exponent by a logarithm. However, for some functions, there's simply no known "undo button". Let's look at some examples.
 
-###1. High-degree polynomial
+### 1. High-degree polynomial
 
 The polynomial of degree n looks like this:
 
@@ -104,7 +104,7 @@ A computer can easily calculate p(x) for any value of x by just doing linear add
 
 But even this is not enough. These high-degree polynomials have to be over a finite field Fp, which means after each operation a modulo of a large prime number is taken from the intermediary result. (Why "a big prime number" is explained [here](https://0xkrt26.github.io/math_behind_security/2026/04/25/searching-smarter-rolling-hashes.html)) 
 
-###2. Discrete Exponentiation. 
+### 2. Discrete Exponentiation. 
 
 In other words, once again our favorite modulo operation performed on each step of bringing a to the power of x:
 
@@ -113,20 +113,20 @@ In other words, once again our favorite modulo operation performed on each step 
 This function is also easily calculated for each x. However, its reverse, logarithm over a finite field is again a hard task for an attacker.
 
 
-###Why do these functions have to be over a finite field, and what is a finite field?
+### Why do these functions have to be over a finite field, and what is a finite field?
 
 Finite field Fg (or Galois field GF(p)) is a field with a finite amount of elements. This amount must equal the power of a prime number. For example, a finite field of 7 can only have values 0, 1, 2, 3, 4, 5, 6. No values in between like 5.99, only integers. In comparison, field R (Real Numbers) includes infinite number of elements. 
 
 In school algebra, we got used to working with infinite fields, where the graph is a curve that can be analyzed, traced, and predicted. Finite fields can be imagined more like chaotic dots, where x for y=101 and x for y=100 aren't even close values. So instead of a "hot and cold" game, the attacker is left with no choice but to brute force the function. It is a very, very, very long process to check, let's say, 2^256 inputs.
 
 
-###Are these functions always secure?
+### Are these functions always secure?
 
 The fewer collisions there're, the better. Imagine there's another X that gives f(X)=f(PW). In this case it doesn't matter which value the attacker finds, X or PW. Since f(X)=f(PW), he will still successfully pass the login. 
 
 Another problem has emerged recently. Remember how we said that it was computationally impossible to reverse the one-way function? Not anymore. Quantum computers exceed the limits of modern computers, making brute force much faster. This creates a need for post-quantum cryptography.
 
-###What else can hash be used for? 
+### What else can hash be used for? 
 
 Other applications of a cryptographically secure hash function include digital signatures for document verification and blockchain. (We'll cover them in more detail next time.)
 
