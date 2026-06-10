@@ -188,5 +188,4 @@ We have already talked a bit about collisions in the hash tables [last time.](ht
 [Richard von Mises Biography](https://link.springer.com/content/pdf/10.1007/978-3-0348-8787-8_13)
 [University of Connecticut lecture](https://www.phys.uconn.edu/~rozman/Courses/P2400_24S/downloads/birthday.pdf)
 
-<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
