@@ -30,11 +30,11 @@ Then we multiply them by powers of 37.
 
 In our example, the numeric value of the word "BOX" is
 
-	$$2 \times 37^2 + 15 \times 37^1 + 24 \times 37^0 = 2738 + 555 + 24 = 3317$$
+$$2 \times 37^2 + 15 \times 37^1 + 24 \times 37^0 = 2738 + 555 + 24 = 3317$$
 
 <div style="font-style: italic; color: #3474B4;">
 
-Early computer systems and punched tapes primarily dealt with letters and numbers only: 26 letters of the English alphabet, plus 10 numbers, and a space add up to 37 available symbols.*
+Early computer systems and punched tapes primarily dealt with letters and numbers only: 26 letters of the English alphabet, plus 10 numbers, and a space add up to 37 available symbols.
 
 </div>
 <br>
@@ -47,7 +47,7 @@ In our example, we will have 100 addressable locations. In this case, the neares
 
 ...then throw away the quotient and use the remainder. In other words, perform our favorite modulo operation!
 
-		$$3317 \pmod{97} = 19$$
+$$3317 \pmod{97} = 19$$
  
 This means the word "BOX" will be stored at memory address 19.
 
@@ -63,7 +63,7 @@ Not really. The idea is the same: use mathematics to transform data. However, th
 
 <div style="font-style: italic; color: #3474B4;">
 
-The definition of the cryptographic hash that I'll give here is based on a very interesting paper, ["New Directions in Cryptography"(1976)](https://www.cs.jhu.edu/~rubin/courses/sp03/papers/diffie.hellman.pdf) by Whitfield Diffie and Martin E. Hellman. It's engaging, easy to read, and covers not only cryptographic hashing but also RSA, so I can really recommend it for further readings.
+The definition of the cryptographic hash that I'll give here is based on a very interesting paper, <a href="https://www.cs.jhu.edu/~rubin/courses/sp03/papers/diffie.hellman.pdf">"New Directions in Cryptography"(1976)</a> by Whitfield Diffie and Martin E. Hellman. It's engaging, easy to read, and covers not only cryptographic hashing but also RSA, so I can really recommend it for further readings.
 
 </div>
 <br>
@@ -98,7 +98,7 @@ At school we learned that every function has an inverse function: addition is re
 
 The polynomial of degree n looks like this:
 
-	$$p(x) = a_n x^n + a_{n-1} x^{n-1} + \dots + a_1 x + a_0$$
+$$p(x) = a_n x^n + a_{n-1} x^{n-1} + \dots + a_1 x + a_0$$
 
 A computer can easily calculate p(x) for any value of x by just doing linear additions and multiplications. However, to solve p(x)=y for x is much harder. We all have solved polynomials of first, second degree, maybe even third degree using quadratic and binomial formulas. But what about a fifth degree polynomial? Tenth? According to the Abel-Ruffini Theorem, "The general polynomial of degree n is not solvable by radicals for n ≥ 5", meaning that there're no shortcuts or special formulas for solving a high degree polynomial. Therefore, it leaves the attacker no choice but to use iterative algorithms, basically guessing the roots.
 
@@ -108,7 +108,7 @@ But even this is not enough. These high-degree polynomials have to be over a fin
 
 In other words, once again our favorite modulo operation performed on each step of bringing a to the power of x:
 
-	$$y = a^x \pmod{q}$$
+$$y = a^x \pmod{q}$$
 
 This function is also easily calculated for each x. However, its reverse, logarithm over a finite field is again a hard task for an attacker.
 
