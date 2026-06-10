@@ -4,13 +4,12 @@ date: 2026-06-09
 ---
 
 Peter Luhn came up with the idea of [using math to verify and store information](https://0xkrt26.github.io/math_behind_security/2026/04/28/the-accidental-ancestor-Luhn-algorithm.html), [Birthday problem](https://0xkrt26.github.io/math_behind_security/2026/05/08/birthday-problem.html) explains the collisions in Hash tables, [Rabin-Karp algorithm](https://0xkrt26.github.io/math_behind_security/2026/04/25/searching-smarter-rolling-hashes.html) uses rolling hash to search strings. We've talked so much about hash, yet not a single time was the definition of the hash function itself provided.
-
-
+<br>
 ### When did hashing first appeared?
 
 In 1956 the idea of hashing was for the first time defined by Arnold Dumey. His passion for cryptography since 14 and mathematics degree from Columbia University brought him first to the US Army Signal Corps, then to Potter Instrument (printer producing company also interested in engineering of computer memory). Later in his [interview for the Charles Babbage Institute](https://conservancy.umn.edu/server/api/core/bitstreams/fa424683-eaf2-4563-a504-6f4d31720aed/content) Dumey said: "I wrote a paper, which was the first paper on hash coding, based on the work I did there [at Potter Instrument]". In that paper, Dumey described the concept of using a mathematical transformation to map data to memory addresses for faster search and called it indexing. 
 
-
+<br>
 ### How did indexing work?
 
 In his paper, Dumey gave clear instructions. 
@@ -29,7 +28,7 @@ Let's take the word "BOX" as an example. We can convert it, as Dumey suggests, i
 Then we multiply them by powers of 37.
 
 In our example, the numeric value of the word "BOX" is
-
+<br>
 $$2 \times 37^2 + 15 \times 37^1 + 24 \times 37^0 = 2738 + 555 + 24 = 3317$$
 
 <div style="font-style: italic; color: #3474B4;">
@@ -51,12 +50,12 @@ $$3317 \pmod{97} = 19$$
  
 This means the word "BOX" will be stored at memory address 19.
 
-
+<br>
 ### What's the difference between indexing and hashing?
 
 There's none. Later indexing will be called a polynomial hash, which we've already covered in [Rabin-Karp algorithm](https://0xkrt26.github.io/math_behind_security/2026/04/25/searching-smarter-rolling-hashes.html) a few weeks ago. The word *hash* itself originates in the French word *hacher* ("to chop", "to mince") which pretty much reflects what a hash function does with information before storing it in memory. For some time it was just a widespread jargon among cryptographers.  In the late 1960s, the term *hash* appeared officially for the first time in Herbert Hellerman's "Digital Computer System Principles".
 
-
+<br>
 ### So that's how cryptographic hashes work?
 
 Not really. The idea is the same: use mathematics to transform data. However, the goal now is to also make that data protected from attackers. 
@@ -112,24 +111,24 @@ $$y = a^x \pmod{q}$$
 
 This function is also easily calculated for each x. However, its reverse, logarithm over a finite field is again a hard task for an attacker.
 
-
+<br>
 ### Why do these functions have to be over a finite field, and what is a finite field?
 
 Finite field Fg (or Galois field GF(p)) is a field with a finite amount of elements. This amount must equal the power of a prime number. For example, a finite field of 7 can only have values 0, 1, 2, 3, 4, 5, 6. No values in between like 5.99, only integers. In comparison, field R (Real Numbers) includes infinite number of elements. 
 
 In school algebra, we got used to working with infinite fields, where the graph is a curve that can be analyzed, traced, and predicted. Finite fields can be imagined more like chaotic dots, where x for y=101 and x for y=100 aren't even close values. So instead of a "hot and cold" game, the attacker is left with no choice but to brute force the function. It is a very, very, very long process to check, let's say, 2^256 inputs.
 
-
+<br>
 ### Are these functions always secure?
 
 The fewer collisions there're, the better. Imagine there's another X that gives f(X)=f(PW). In this case it doesn't matter which value the attacker finds, X or PW. Since f(X)=f(PW), he will still successfully pass the login. 
 
 Another problem has emerged recently. Remember how we said that it was computationally impossible to reverse the one-way function? Not anymore. Quantum computers exceed the limits of modern computers, making brute force much faster. This creates a need for post-quantum cryptography.
-
+<br>
 ### What else can hash be used for? 
 
 Other applications of a cryptographically secure hash function include digital signatures for document verification and blockchain. (We'll cover them in more detail next time.)
-
+<br>
 ### My sources and further readings: 
 [Arnold Dumey "Computers and Automation"](http://bitsavers.informatik.uni-stuttgart.de/magazines/Computers_And_Automation/195612.pdf)<br>
 [Arnold Dumey's Interview for Charles Babbage Institute](https://conservancy.umn.edu/server/api/core/bitstreams/fa424683-eaf2-4563-a504-6f4d31720aed/content)<br>
