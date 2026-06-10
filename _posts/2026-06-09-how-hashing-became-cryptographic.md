@@ -30,7 +30,6 @@ Then we multiply them by powers of 37.
 
 In our example, the numeric value of the word "BOX" is
 
-<br>
 
 $$2 \times 37^2 + 15 \times 37^1 + 24 \times 37^0 = 2738 + 555 + 24 = 3317$$
 
