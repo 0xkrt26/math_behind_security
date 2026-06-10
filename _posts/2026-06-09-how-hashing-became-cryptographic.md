@@ -93,7 +93,7 @@ The main property of the one-way function that creates a hash is its irreversibi
 
 <div style="font-style: italic; color: #734f96;">
 
-Computationally means that even with the most powerful computer, it will take ages to find the original value
+Computationally means that even with the most powerful computer, it will take ages to find the original value.
 
 </div>
 <br>
