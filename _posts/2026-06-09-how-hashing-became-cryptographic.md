@@ -147,6 +147,4 @@ Other applications of a cryptographically secure hash function include digital s
 [Wikipedia about hash function](https://en.wikipedia.org/wiki/Hash_function#History)<br>
 [Chicago University about Abel-Ruffini Theorem](https://math.uchicago.edu/~may/REU2019/REUPapers/Mrinal.pdf)<br>
 
-
-<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
