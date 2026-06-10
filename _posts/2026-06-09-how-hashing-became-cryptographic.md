@@ -5,7 +5,7 @@ date: 2026-06-09
 
 <div style="font-style: italic; color: #3474B4;">
 	
-A Python implementation for all of these algorithms is available in my [GitHub repository](https://github.com/0xkrt26/math_behind_security/blob/main/implementations/dumey_polynom_exponent_hash.py).
+A Python implementation for all of these algorithms is available in my <a href="https://github.com/0xkrt26/math_behind_security/blob/main/implementations/dumey_polynom_exponent_hash.py">GitHub repository</a>.
 
 </div>
 <br> 
