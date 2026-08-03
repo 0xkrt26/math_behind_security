@@ -349,7 +349,7 @@ That's the tree after we deleted all the duplicates. Already so much less to sto
 
 Moreover, the modified version is just the Merkle tree itself but with flipped inner knots. Just compare the authentication paths with this scheme:
 
-![Merkle Tree](/math_behind_security/_posts/merkle_tree/merkle-tree1.png)
+![Merkle Tree](./math_behind_security/_posts/merkle_tree/merkle-tree1.png)
 
 <div style="font-style: italic; color: #734f96;">
 
@@ -362,7 +362,7 @@ What's even better is that there's no need for Alice to store most of the values
 
 Here's the updated tree for better visualisation:
 
-![Merkle Tree](/math_behind_security/_posts/merkle_tree/merkle-tree2.png)
+![Merkle Tree](./math_behind_security/_posts/merkle_tree/merkle-tree2.png)
 
 <br>
 ### But Alice probably has to store all the unused private keys X_i and public keys Y_i anyway, right?
