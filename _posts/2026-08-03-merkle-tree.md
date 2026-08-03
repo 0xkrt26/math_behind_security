@@ -465,32 +465,4 @@ Now you may wonder, how is this whole construction relevant to the history of ha
 <br>
 ["Bitcoin: A Peer-to-Peer Electronic Cash System"](https://bitcoin.org/bitcoin.pdf)
 
-<!-- 1. MathJax Config (MUST come BEFORE the MathJax script tag) -->
-<script>
-  MathJax = {
-    tex: {
-      inlineMath: [['$', '$'], ['\\(', '\\)']],
-      displayMath: [['$$', '$$'], ['\\[', '\\]']]
-    }
-  };
-</script>
-
-<!-- 2. MathJax Library -->
-<script id="MathJax-script" async src="[https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js](https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js)"></script>
-
-<!-- 3. Mermaid Library & Auto-Render Initialization -->
-<script src="[https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js](https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js)"></script>
-<script>
-  document.addEventListener("DOMContentLoaded", function() {
-    // Automatically converts standard Markdown code blocks (```mermaid) into rendered diagrams
-    const codeBlocks = document.querySelectorAll('pre code.language-mermaid, pre.src-mermaid');
-    codeBlocks.forEach(block => {
-      const parent = block.parentElement;
-      const div = document.createElement('div');
-      div.className = 'mermaid';
-      div.textContent = block.textContent;
-      parent.replaceWith(div);
-    });
-    mermaid.initialize({ startOnLoad: true });
-  });
-</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
