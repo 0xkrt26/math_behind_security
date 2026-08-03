@@ -34,7 +34,7 @@ Rarely does someone want to sell the entire stock at once. Much more often, peop
 
 Alice would have had to choose j private keys x:
 
-\(
+$$
 \begin{matrix}
 x_1 \\
 x_2 \\
@@ -42,7 +42,7 @@ x_3 \\
 \vdots \\
 x_j
 \end{matrix}
-\)
+$$
 
 and compute $2j \cdot F(x_j)$. These values she then shares with Bob as a public key in the form of a vector X_i. 
 
@@ -347,7 +347,7 @@ That's the tree after we deleted all the duplicates. Already so much less to sto
 
 Moreover, the modified version is just the Merkle tree itself but with flipped inner knots. Just compare the authentication paths with this scheme:
 
-![Merkle Tree](./math_behind_security/_posts/merkle_tree/merkle-tree1.png)
+<img src="/assets/images/merkle-tree1.png" alt="Merkle Tree" style="max-width: 100%;">
 
 <div style="font-style: italic; color: #734f96;">
 
@@ -360,7 +360,7 @@ What's even better is that there's no need for Alice to store most of the values
 
 Here's the updated tree for better visualisation:
 
-![Merkle Tree](./math_behind_security/_posts/merkle_tree/merkle-tree2.png)
+<img src="/assets/images/merkle-tree2.png" alt="Merkle Tree" style="max-width: 100%;">
 
 <br>
 ### But Alice probably has to store all the unused private keys X_i and public keys Y_i anyway, right?
