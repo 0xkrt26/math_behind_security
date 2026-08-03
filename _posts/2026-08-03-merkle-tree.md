@@ -15,6 +15,7 @@ The Great Seal of Realm - the sign of a royal approval. For centuries, Kings and
 But the world is evolving. We can hardly imagine navigating modern life without computer, mobile phone, or internet. And the problem with ordinary autographs in this setting is that they can be easily copy-pasted from one document to another just like a fancy sticker. It is very helpful when you don't want to print the document, only to sign it and then scan it again, since we all know the struggle of drawing with a touchpad or a computer mouse (at least I always get some weird doodles instead of a signature). But unfortunately, if you can copy-paste it, then anyone else can do the same. And I bet it won't feel very nice if one morning you wake up and all your stocks and investments are gone because someone forged your autograph on a gift deed, will it? 
 
 But no worries. Already in 1979 Ralph Charles Merkle came up with an idea of a digital signature, which he described in his PhD thesis "Secrecy, Authentication, and Public Key Systems". Though to be accurate, the idea of a digital signature was not his. He improved an already existing Lamport-Diffie one-time signature, which, in turn, was an improved version of Rabin's signature, as Leslie Lamport mentions himself in the description to his report paper on the [Microsoft research forum](https://www.microsoft.com/en-us/research/publication/constructing-digital-signatures-one-way-function/).
+
 <br>
 ### So what is that Lamport-Diffie one-time signature?
 
@@ -33,6 +34,7 @@ Rarely does someone want to sell the entire stock at once. Much more often, peop
 
 Alice would have had to choose j private keys x:
 
+<div align="left">
 $$
 \begin{matrix}
 x_1 \\
@@ -42,24 +44,22 @@ x_3 \\
 x_j
 \end{matrix}
 $$
+</div>
 
 and compute $2j \cdot F(x_j)$. These values she then shares with Bob as a public key in the form of a vector X_i. 
 
-<br>
 <div style="font-style: italic; color: #734f96;">
 
 The value j is a fixed number, representing the bit length of the message, that Alice can sign. For our example, we will use j=100.
 
 </div>
 <br>
-
 So some time later, Alice wants to send a message m: "Sell 11 shares". 
 
 First, she needs a binary representation of her message:
 
 01010011 01100101 01101100 01101100 00100000 00110001 00110001 00100000 01110011 01101000 01100001 01110010 01100101 01110011
 
-<br>
 <div style="font-style: italic; color: #734f96;">
 
 The length of this message is 112 bits, but since $j=100$, she has only 100 precomputed keys and therefore can sign only 100 bits.
@@ -73,7 +73,7 @@ Of course not. Instead we just use another one-way function to map all 112 bits 
 
 So for each bit out of 100, she has a private key x_j and a public key y_j. To sign her message m, she sends Bob all the x_j of all the bits that equal 1 in her message (also in a vector form). So in our example for the letter s she sends:
 
-
+<div align="left">
 $$
 \begin{array}{c}
 \mathtt{01010011} \\[1ex]
@@ -83,9 +83,11 @@ x_7 \\
 x_8
 \end{array}
 $$
+</div>
 
 For the next letter e, she reveals:
 
+<div align="left">
 $$
 \begin{array}{c}
 \mathtt{01100101} \\[1ex]
@@ -95,12 +97,13 @@ x_6 \\
 x_8
 \end{array}
 $$
+</div>
 
 ...and so on.
 
 This way, Alice signs every bit of her message.
 
-
+<br>
 ### So the message is secured?
 
 Actually, not completely. There is a way for Bob to alter the message. He can just pretend he never got one of the private keys x_j from Alice, therefore changing 1 in the message to 0. This way he can say that instead of 11 shares:
@@ -110,8 +113,10 @@ Actually, not completely. There is a way for Bob to alter the message. He can ju
 Alice asked him to sell only 10 shares:
 
 00110001 00110000
+
 <br>
 To avoid this, Lamport and Diffie suggest appending m' - a complement of m - to the end of the message. This way, if Bob wants to change 11 shares to 10 shares, he would have to reveal x_j that corresponds to 1 in the complement of m' (the very last bit of the forged message in the following example), which he can't do as Alice never sent him that private key.
+
 <br>
 Example:
 
@@ -119,18 +124,19 @@ Original mm'= 00110001 00110001 11001110 11001110
 
 Forged mm'= 00110001 00110000 11001110 11001111
 <br>
+
 Everything seems to be working well now. But the problem is, such one-time signature requires too much storage space. So Ralph Merkle decided to improve the algorithm and suggested another way to sign messages.
 
-
+<br>
 ### How does Merkle improve the Lamport-Diffie one-time signature?
 
 Merkle's first solution was to reduce the actual length of the protected message. So Lamport suggested using the complement m' of m to protect Bob from altering the signature, right? That was a good idea, but it also made the message twice as long as it was.
 
-To save some storage space, Merkle adds the amount of 0s to the end of the message m. For that he would need only log_2 j (or in our example log_2 100) additional bits, which is significantly less than in Lamport's idea.
+To save some storage space, Merkle adds the amount of 0s to the end of the message m. For that he would need only $log_2 j$ (or in our example $log_2 100$) additional bits, which is significantly less than in Lamport's idea.
 
 <div style="font-style: italic; color: #734f96;">
 
-Why $log_2$?
+Why log_2?
 <br>
 The amount of zeroes is stored as a binary number, so to store 8 bits we need 3 bits, for 100 bits 4 bits since 100 is between 2^6=64 and 2^7=128.
 
@@ -166,7 +172,7 @@ Bob would be able to forge it without any problem by just changing 1s to 0s in b
 
 Of course (if we use the Lamport-Diffie one-time signature). Otherwise, how would Bob know it's Alice who is sending him the keys? What if it was an enemy of Alice Eva who created all the public and private keys right before signing her evil message "Gift all my stocks to Eva. Alice" and sending it to Bob? It can only be fixed with some sort of prior arrangement. But as we can imagine, storing all those public keys takes a lot of Bob's storage. So Merkle came up with another solution called "tree authentication".
 
-
+<br>
 ### How does tree authentication work?
 
 The whole construction looks like a binary tree. The leaves are the Y_i values (the public keys calculated using the Lamport-Diffie method). The inner knots and the root are computed inductively using another one-way function H. We start from the leaves with:
@@ -178,11 +184,13 @@ and go up to the root using:
 $$H(i, j, Y) = F\left( H\left(i, \frac{i+j}{2}, Y\right), H\left(\frac{i+j}{2} + 1, j, Y\right) \right)$$
 
 This might seem complicated at first, but let's look at an example and try to understand how exactly the signing process works.
+
 <br>
 Example:
 
 Let's assume Alice wants to be able to send eight signed messages to Bob. First she computes 8 vectors Y_1, Y_2,..., Y_8 using Lamport-Diffie signature. Then Alice calculates:
 
+<div align="left">
 $$
 \begin{aligned}
 H(1, 1, Y_1) &= F(Y_1) \\
@@ -191,9 +199,11 @@ H(2, 2, Y_2) &= F(Y_2) \\
 H(8, 8, Y_8) &= F(Y_8)
 \end{aligned}
 $$
-
+<div align="left">
+	
 Then she takes pairs of $H(i,i,Y)$ and creates inner nodes:
 
+<div align="left">
 $$
 \begin{aligned}
 H(1, 2, Y_{1,2}) &= F\big( H(1, 1, Y_1), H(2, 2, Y_2) \big) \\
@@ -202,15 +212,18 @@ H(5, 6, Y_{5,6}) &= F\big( H(5, 5, Y_5), H(6, 6, Y_6) \big) \\
 H(7, 8, Y_{7,8}) &= F\big( H(7, 7, Y_7), H(8, 8, Y_8) \big)
 \end{aligned}
 $$
+</div>
 
 Then pairs the new Hs again:
 
+<div align="left">
 $$
 \begin{aligned}
 H(1, 4, Y_{1,4}) &= F\big( H(1, 2, Y_{1,2}), H(3, 4, Y_{3,4}) \big) \\
 H(5, 8, Y_{5,8}) &= F\big( H(5, 6, Y_{5,6}), H(7, 8, Y_{7,8}) \big)
 \end{aligned}
 $$
+</div>
 
 And one more time:
 
@@ -224,32 +237,35 @@ The value $H(1, 8, Y_1,8)$ that Alice gets is a root value R. This is the only v
 Let's imagine in the form of dialogue between Alice and Bob how exactly the first message m_1 out of eight available messages is signed.
 
 Alice:
-$H(5, 8, Y_{5,8})$  
-$H(1, 4, Y_{1,4})$
+
+$$H(5, 8, Y_{5,8})$$  
+$$H(1, 4, Y_{1,4})$$
+
 
 Bob:  
 *(takes $H(1, 8, Y_{1,8})$ from the contract)*  
+
 $$H(1, 8, Y_{1,8}) = F\big( H(1, 4, Y_{1,4}), H(5, 8, Y_{5,8}) \big)?$$  
 If yes, proceed.
 
 Alice:  
-$H(1, 2, Y_{1,2})$  
-$H(3, 4, Y_{3,4})$
+$$H(1, 2, Y_{1,2})$$  
+$$H(3, 4, Y_{3,4})$$
 
 Bob:  
 $$H(1, 4, Y_{1,4}) = F\big( H(1, 2, Y_{1,2}), H(3, 4, Y_{3,4}) \big)?$$  
 If yes, proceed.
 
 Alice:  
-$H(1, 1, Y_1)$  
-$H(2, 2, Y_2)$
+$$H(1, 1, Y_1)$$  
+$$H(2, 2, Y_2)$$
 
 Bob:  
 $$H(1, 2, Y_{1,2}) = F\big( H(1, 1, Y_1), H(2, 2, Y_2) \big)?$$  
 If yes, proceed.
 
 Alice:  
-$Y_1$
+$$Y_1$$
 
 Bob:  
 $$F(Y_1) = H(1, 1, Y_1)?$$  
@@ -269,6 +285,7 @@ Sure. Let's calculate.
 
 In our example of the Lamport-Diffie one-time signature, both of the hash functions that we used while compressing and signing, produce 100-bit outputs. 
 
+<div align="left">
 $$
 \begin{aligned}
 2 \cdot j \cdot s &= 2 \cdot 100 \cdot 100 = 20{,}000 \text{ bits} \\[1ex]
@@ -277,6 +294,7 @@ $$
 s &\text{ = length of one public/private key}
 \end{aligned}
 $$
+</div>
 
 Now if Bob receives not just one but 1000 messages from Alice, the amount of storage needed to store all the public keys would be 
 
@@ -295,6 +313,7 @@ Now with Merkle's improvement, Bob only stores the root value R, which, just lik
 
 Not exactly. Let's look at the authentication paths for the tree from our example: 
 
+<div align="left">
 $$
 \begin{aligned}
 Y_1 &: H(2,2), H(3,4), H(5,8), H(1,8) \\
@@ -307,9 +326,11 @@ Y_7 &: H(8,8), H(5,6), H(1,4), H(1,8) \\
 Y_8 &: H(7,7), H(5,6), H(1,4), H(1,8)
 \end{aligned}
 $$
+</div>
 
 You notice something interesting? If no, look at this modified version: 
 
+<div align="left">
 $$
 \begin{aligned}
 Y_1 &: H(2,2), H(3,4), H(5,8), H(1,8) \\
@@ -322,6 +343,7 @@ Y_7 &: H(8,8), H(5,6) \\
 Y_8 &: H(7,7)
 \end{aligned}
 $$
+</div>
 
 That's the tree after we deleted all the duplicates. Already so much less to store, isn't it?
 
@@ -443,4 +465,32 @@ Now you may wonder, how is this whole construction relevant to the history of ha
 <br>
 ["Bitcoin: A Peer-to-Peer Electronic Cash System"](https://bitcoin.org/bitcoin.pdf)
 
-<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<!-- 1. MathJax Config (MUST come BEFORE the MathJax script tag) -->
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$', '$$'], ['\\[', '\\]']]
+    }
+  };
+</script>
+
+<!-- 2. MathJax Library -->
+<script id="MathJax-script" async src="[https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js](https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js)"></script>
+
+<!-- 3. Mermaid Library & Auto-Render Initialization -->
+<script src="[https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js](https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js)"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    // Automatically converts standard Markdown code blocks (```mermaid) into rendered diagrams
+    const codeBlocks = document.querySelectorAll('pre code.language-mermaid, pre.src-mermaid');
+    codeBlocks.forEach(block => {
+      const parent = block.parentElement;
+      const div = document.createElement('div');
+      div.className = 'mermaid';
+      div.textContent = block.textContent;
+      parent.replaceWith(div);
+    });
+    mermaid.initialize({ startOnLoad: true });
+  });
+</script>
