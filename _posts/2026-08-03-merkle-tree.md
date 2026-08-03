@@ -10,12 +10,11 @@ An implementation of a small Merkle Tree can be found in <a href="https://github
 </div>
 <br> 
 
-The Great Seal of Realm - the sign of a royal approval. For centuries, Kings and Queens, Emperors and Empresses, Ladies and Lords used seals to leave their family names on the important documents. But what was left for us, ordinary commoners? Simple autographs were our low budget seals. Their uniqueness comes from a combination of pen pressure, speed and rhythm, letter slant and spacing. 
+The Great Seal of Realm - the sign of a royal approval. For centuries, Kings and Queens, Emperors and Empresses, Ladies and Lords used seals to leave their family names on the important documents. But what was left for us, ordinary commoners? Simple autographs were our low budget seals. Their uniqueness comes from a combination of pen pressure, speed and rhythm, letter slant, and spacing. 
 
-But the world is evolving. We can hardly imagine navigating modern life without computer, mobile phone or internet. And the problem with ordinary autographs in this setting is that they can be easily copy-pasted from one document to another just like a fancy sticker. It is very helpful when you don't want to print the document, only to sign it and then scan it again, since we all know the struggle of drawing with a touchpad or a computer mouse (at least I always get some weird doodles instead of a signature). But unfortunately, if you can copy-paste it, then anyone else can do the same. And I bet it won't feel very nice if one morning you wake up and all your stocks and investments are gone, because someone forged your autograph on a gift deed, will it? 
+But the world is evolving. We can hardly imagine navigating modern life without computer, mobile phone, or internet. And the problem with ordinary autographs in this setting is that they can be easily copy-pasted from one document to another just like a fancy sticker. It is very helpful when you don't want to print the document, only to sign it and then scan it again, since we all know the struggle of drawing with a touchpad or a computer mouse (at least I always get some weird doodles instead of a signature). But unfortunately, if you can copy-paste it, then anyone else can do the same. And I bet it won't feel very nice if one morning you wake up and all your stocks and investments are gone because someone forged your autograph on a gift deed, will it? 
 
-But no worries. Already in 1979 Ralph Charles Merkle came up with an idea of a digital signature, which he described in his PhD thesis "Secrecy, Authentication, and Public Key Systems". Though to be accurate, the idea of digital signature was not his. He improved an already existing Lamport-Diffie one-time signature, which, in turn, was an improved version of Rabin's signature, as Leslie Lamport mentions himself in the description to his report paper on the [Microsoft research forum](https://www.microsoft.com/en-us/research/publication/constructing-digital-signatures-one-way-function/).
-
+But no worries. Already in 1979 Ralph Charles Merkle came up with an idea of a digital signature, which he described in his PhD thesis "Secrecy, Authentication, and Public Key Systems". Though to be accurate, the idea of a digital signature was not his. He improved an already existing Lamport-Diffie one-time signature, which, in turn, was an improved version of Rabin's signature, as Leslie Lamport mentions himself in the description to his report paper on the [Microsoft research forum](https://www.microsoft.com/en-us/research/publication/constructing-digital-signatures-one-way-function/).
 <br>
 ### So what is that Lamport-Diffie one-time signature?
 
@@ -34,18 +33,19 @@ Rarely does someone want to sell the entire stock at once. Much more often, peop
 
 Alice would have had to choose j private keys x:
 
-x_1 
-
-x_2
-
-x_3
-
-...
-
+$$
+\begin{matrix}
+x_1 \\
+x_2 \\
+x_3 \\
+\vdots \\
 x_j
+\end{matrix}
+$$
 
-and compute 2*j F(x_j). These values she then shares with Bob as a public key in the form of a vector X_i. 
+and compute $2j \cdot F(x_j)$. These values she then shares with Bob as a public key in the form of a vector X_i. 
 
+<br>
 <div style="font-style: italic; color: #734f96;">
 
 The value j is a fixed number, representing the bit length of the message, that Alice can sign. For our example, we will use j=100.
@@ -59,9 +59,10 @@ First, she needs a binary representation of her message:
 
 01010011 01100101 01101100 01101100 00100000 00110001 00110001 00100000 01110011 01101000 01100001 01110010 01100101 01110011
 
+<br>
 <div style="font-style: italic; color: #734f96;">
 
-The length of this message is 112 bits, but since j=100, she has only 100 precomputed keys and therefore can sign only 100 bits.
+The length of this message is 112 bits, but since $j=100$, she has only 100 precomputed keys and therefore can sign only 100 bits.
 <br>
 Does it mean she has to make her message shorter?
 <br>
@@ -73,34 +74,33 @@ Of course not. Instead we just use another one-way function to map all 112 bits 
 So for each bit out of 100, she has a private key x_j and a public key y_j. To sign her message m, she sends Bob all the x_j of all the bits that equal 1 in her message (also in a vector form). So in our example for the letter s she sends:
 
 
-01010011 
-
-
-x_2
-
-x_4
-
-x_7
-
+$$
+\begin{array}{c}
+\mathtt{01010011} \\[1ex]
+x_2 \\
+x_4 \\
+x_7 \\
 x_8
+\end{array}
+$$
 
 For the next letter e, she reveals:
 
-01100101
-
-x_2
-
-x_3
-
-x_6
-
+$$
+\begin{array}{c}
+\mathtt{01100101} \\[1ex]
+x_2 \\
+x_3 \\
+x_6 \\
 x_8
+\end{array}
+$$
 
 ...and so on.
 
 This way, Alice signs every bit of her message.
 
-<br>
+
 ### So the message is secured?
 
 Actually, not completely. There is a way for Bob to alter the message. He can just pretend he never got one of the private keys x_j from Alice, therefore changing 1 in the message to 0. This way he can say that instead of 11 shares:
@@ -110,18 +110,18 @@ Actually, not completely. There is a way for Bob to alter the message. He can ju
 Alice asked him to sell only 10 shares:
 
 00110001 00110000
-
+<br>
 To avoid this, Lamport and Diffie suggest appending m' - a complement of m - to the end of the message. This way, if Bob wants to change 11 shares to 10 shares, he would have to reveal x_j that corresponds to 1 in the complement of m' (the very last bit of the forged message in the following example), which he can't do as Alice never sent him that private key.
-
+<br>
 Example:
 
 Original mm'= 00110001 00110001 11001110 11001110
 
 Forged mm'= 00110001 00110000 11001110 11001111
-
+<br>
 Everything seems to be working well now. But the problem is, such one-time signature requires too much storage space. So Ralph Merkle decided to improve the algorithm and suggested another way to sign messages.
 
-<br>
+
 ### How does Merkle improve the Lamport-Diffie one-time signature?
 
 Merkle's first solution was to reduce the actual length of the protected message. So Lamport suggested using the complement m' of m to protect Bob from altering the signature, right? That was a good idea, but it also made the message twice as long as it was.
@@ -130,7 +130,7 @@ To save some storage space, Merkle adds the amount of 0s to the end of the messa
 
 <div style="font-style: italic; color: #734f96;">
 
-Why log_2?
+Why $log_2$?
 <br>
 The amount of zeroes is stored as a binary number, so to store 8 bits we need 3 bits, for 100 bits 4 bits since 100 is between 2^6=64 and 2^7=128.
 
@@ -152,7 +152,7 @@ Now Bob wants to forge the message by changing one bit from 0 to 1. Now message 
 10001**0**00 1**10**
 
 As you can see, changing 1 to 0 in one part means also changing 0s to 1s in another part, which Bob can't do.
-
+<br>
 Now if instead of 0s, we were appending the number of 1s:
 
 10001**1**00 1**1**
@@ -166,96 +166,93 @@ Bob would be able to forge it without any problem by just changing 1s to 0s in b
 
 Of course (if we use the Lamport-Diffie one-time signature). Otherwise, how would Bob know it's Alice who is sending him the keys? What if it was an enemy of Alice Eva who created all the public and private keys right before signing her evil message "Gift all my stocks to Eva. Alice" and sending it to Bob? It can only be fixed with some sort of prior arrangement. But as we can imagine, storing all those public keys takes a lot of Bob's storage. So Merkle came up with another solution called "tree authentication".
 
-<br>
+
 ### How does tree authentication work?
 
 The whole construction looks like a binary tree. The leaves are the Y_i values (the public keys calculated using the Lamport-Diffie method). The inner knots and the root are computed inductively using another one-way function H. We start from the leaves with:
 
-H(i,i,Y) = F(Y_i)
+$$H(i, i, Y) = F(Y_i)$$
 
 and go up to the root using:
 
-H(i,j,Y) = F( H(i,(i+j)/2,Y), H(((i+j)/2)+1,j,Y) )
+$$H(i, j, Y) = F\left( H\left(i, \frac{i+j}{2}, Y\right), H\left(\frac{i+j}{2} + 1, j, Y\right) \right)$$
 
 This might seem complicated at first, but let's look at an example and try to understand how exactly the signing process works.
-
+<br>
 Example:
 
 Let's assume Alice wants to be able to send eight signed messages to Bob. First she computes 8 vectors Y_1, Y_2,..., Y_8 using Lamport-Diffie signature. Then Alice calculates:
 
-H(1, 1, Y_1) = F(Y_1)
+$$
+\begin{aligned}
+H(1, 1, Y_1) &= F(Y_1) \\
+H(2, 2, Y_2) &= F(Y_2) \\
+&\;\;\vdots \\
+H(8, 8, Y_8) &= F(Y_8)
+\end{aligned}
+$$
 
-H(2, 2, Y_2) = F(Y_2)
+Then she takes pairs of $H(i,i,Y)$ and creates inner nodes:
 
-...
-
-H(8, 8, Y_8) = F(Y_8)
-
-Then she takes pairs of H(i,i,Y) and creates inner nodes:
-
-H(1, 2, Y_1,2) = F( H(1, 1, Y_1), H(2, 2, Y_2))
-
-H(3, 4, Y_3,4) = F( H(3, 3, Y_3), H(4, 4, Y_4))
-
-H(5, 6, Y_5,6) = F( H(5, 5, Y_5), H(6, 6, Y_6))
-
-H(7, 8, Y_7,8) = F( H(7, 7, Y_7), H(8, 8, Y_8))
+$$
+\begin{aligned}
+H(1, 2, Y_{1,2}) &= F\big( H(1, 1, Y_1), H(2, 2, Y_2) \big) \\
+H(3, 4, Y_{3,4}) &= F\big( H(3, 3, Y_3), H(4, 4, Y_4) \big) \\
+H(5, 6, Y_{5,6}) &= F\big( H(5, 5, Y_5), H(6, 6, Y_6) \big) \\
+H(7, 8, Y_{7,8}) &= F\big( H(7, 7, Y_7), H(8, 8, Y_8) \big)
+\end{aligned}
+$$
 
 Then pairs the new Hs again:
 
-H(1, 4, Y_1,4) = F( H(1, 2, Y_1,2), H(3, 4, Y_3,4) )
-
-H(5, 8, Y_5,8) = F( H(5, 6, Y_5,6), H(7, 8, Y_7,8) )
+$$
+\begin{aligned}
+H(1, 4, Y_{1,4}) &= F\big( H(1, 2, Y_{1,2}), H(3, 4, Y_{3,4}) \big) \\
+H(5, 8, Y_{5,8}) &= F\big( H(5, 6, Y_{5,6}), H(7, 8, Y_{7,8}) \big)
+\end{aligned}
+$$
 
 And one more time:
 
-H(1, 8, Y_1,8) = F( H(1, 4, Y_1,4), H(5, 8, Y_5,8) )
+$$H(1, 8, Y_{1,8}) = F\big( H(1, 4, Y_{1,4}), H(5, 8, Y_{5,8}) \big)$$
 
-The value H(1, 8, Y_1,8) that Alice gets is a root value R. This is the only value that Bob and Alice have to agree upon before signing any messages and therefore the only public key that Bob needs to store. 
+The value $H(1, 8, Y_1,8)$ that Alice gets is a root value R. This is the only value that Bob and Alice have to agree upon before signing any messages and therefore the only public key that Bob needs to store. 
 
 <br>
 ### How does Alice actually sign the message?
 
 Let's imagine in the form of dialogue between Alice and Bob how exactly the first message m_1 out of eight available messages is signed.
 
-Alice: 
-H(5, 8, Y_5,8)
+Alice:
+$H(5, 8, Y_{5,8})$  
+$H(1, 4, Y_{1,4})$
 
-H(1, 4, Y_1,4)
-
-Bob:
-*takes H(1, 8, Y_1,8)from the contract*
-
-H(1, 8, Y_1,8) = F( H(1, 4, Y_1,4), H(5, 8, Y_5,8))?
-
+Bob:  
+*(takes $H(1, 8, Y_{1,8})$ from the contract)*  
+$$H(1, 8, Y_{1,8}) = F\big( H(1, 4, Y_{1,4}), H(5, 8, Y_{5,8}) \big)?$$  
 If yes, proceed.
 
-Alice:
-H(1, 2, Y_1,2)
+Alice:  
+$H(1, 2, Y_{1,2})$  
+$H(3, 4, Y_{3,4})$
 
-H(3, 4, Y_3,4)
-
-Bob:
-H(1, 4, Y_1,4) = F( H(1, 2, Y_1,2), H(3, 4, Y_3,4))?
-
+Bob:  
+$$H(1, 4, Y_{1,4}) = F\big( H(1, 2, Y_{1,2}), H(3, 4, Y_{3,4}) \big)?$$  
 If yes, proceed.
 
-Alice:
-H(1, 1, Y_1)
+Alice:  
+$H(1, 1, Y_1)$  
+$H(2, 2, Y_2)$
 
-H(2, 2, Y_2)
-
-Bob:
-H(1, 2, Y_1,2) = F( H(1, 1, Y_1), H(2, 2, Y_2))?
-
+Bob:  
+$$H(1, 2, Y_{1,2}) = F\big( H(1, 1, Y_1), H(2, 2, Y_2) \big)?$$  
 If yes, proceed.
 
-Alice:
-Y_1
+Alice:  
+$Y_1$
 
-Bob:
-F(Y_1) = H(1,1,Y_1)?
-
+Bob:  
+$$F(Y_1) = H(1, 1, Y_1)?$$  
 If yes, then the message is indeed from Alice, and the private keys can be revealed according to the Lamport-Diffie method.
 
 
@@ -298,39 +295,33 @@ Now with Merkle's improvement, Bob only stores the root value R, which, just lik
 
 Not exactly. Let's look at the authentication paths for the tree from our example: 
 
-Y_1: H(2,2), H(3,4), H(5,8), H(1,8)
-
-Y_2: H(1,1), H(3,4), H(5,8), H(1,8)
-
-Y_3: H(4,4), H(1,2), H(5,8), H(1,8)
-
-Y_4: H(3,3), H(1,2), H(5,8), H(1,8)
-
-Y_5: H(6,6), H(7,8), H(1,4), H(1,8)
-
-Y_6: H(5,5), H(7,8), H(1,4), H(1,8)
-
-Y_7: H(8,8), H(5,6), H(1,4), H(1,8)
-
-Y_8: H(7,7), H(5,6), H(1,4), H(1,8)
+$$
+\begin{aligned}
+Y_1 &: H(2,2), H(3,4), H(5,8), H(1,8) \\
+Y_2 &: H(1,1), H(3,4), H(5,8), H(1,8) \\
+Y_3 &: H(4,4), H(1,2), H(5,8), H(1,8) \\
+Y_4 &: H(3,3), H(1,2), H(5,8), H(1,8) \\
+Y_5 &: H(6,6), H(7,8), H(1,4), H(1,8) \\
+Y_6 &: H(5,5), H(7,8), H(1,4), H(1,8) \\
+Y_7 &: H(8,8), H(5,6), H(1,4), H(1,8) \\
+Y_8 &: H(7,7), H(5,6), H(1,4), H(1,8)
+\end{aligned}
+$$
 
 You notice something interesting? If no, look at this modified version: 
 
-Y_1:  H(2,2), H(3,4), H(5,8), H(1,8)
-
-Y_2: H(1,1)
-
-Y_3: H(4,4), H(1,2)
-
-Y_4: H(3,3)
-
-Y_5: H(6,6), H(7,8), H(1,4)
-
-Y_6: H(5,5)
-
-Y_7: H(8,8), H(5,6)
-
-Y_8: H(7,7)
+$$
+\begin{aligned}
+Y_1 &: H(2,2), H(3,4), H(5,8), H(1,8) \\
+Y_2 &: H(1,1) \\
+Y_3 &: H(4,4), H(1,2) \\
+Y_4 &: H(3,3) \\
+Y_5 &: H(6,6), H(7,8), H(1,4) \\
+Y_6 &: H(5,5) \\
+Y_7 &: H(8,8), H(5,6) \\
+Y_8 &: H(7,7)
+\end{aligned}
+$$
 
 That's the tree after we deleted all the duplicates. Already so much less to store, isn't it?
 
@@ -419,7 +410,7 @@ Nope. For this, Merkle also found a solution.
 All Alice needs to store is a single 200-bit seedkey - 200 bits of random once-generated data. With just this seedkey, she would be able to restore all the eight 10700-bits-long private keys X_1 to X_8. For that to work, instead of choosing 8*107 random values for her private keys x_j in the very beginning, Alice would have to choose just this one secret seedkey 200 bits long and then generate:
 
 $$x_{i,j} = C(\text{seedkey}, \langle i, j \rangle)$$
-
+<br>
 <div style="font-style: italic; color: #734f96;">
 
 Here private key x has two indexes i and j. i shows the message number, and j indicates the position of the bit in the message.
@@ -435,18 +426,18 @@ So since Alice can restore all the private keys from just a 200-bit seedkey, why
 <br>
 ### Does it mean Merkle authentication tree is still used today?
 
-It is. In fact, Merkle tree is a fundamental part of a blockchain. Just instead of messages leaf nodes contain hashes of transactions. 
+It is. In fact, Merkle tree is a fundamental part of a blockchain. Just instead of messages, leaf nodes contain hashes of transactions. 
 
 Let's quickly take a look at what a blockchain is. The name speaks for itself: it's a chain of blocks. Each block contains a connection to the previous block and a Merkle tree with thousands of transactions as its leaves. 
 
-The most common example of a blockchain would be Bitcoin. The paper "Bitcoin: A Peer-to-Peer Electronic Cash System" explicitly names Merkle tree as a solution for Simplified Payment Verification. This means if you are buying Bitcoin, but first want to make sure it's not a fraud, you can verify a single transaction without downloading the entire blockchain. All you need is the relevant authentication path - exactly what Bob needed to verify a single message without storing the entire tree.
+The most common example of a blockchain would be Bitcoin. The paper "Bitcoin: A Peer-to-Peer Electronic Cash System" explicitly names Merkle tree as a solution for Simplified Payment Verification. This means if you are buying Bitcoin but first want to make sure it's not a fraud, you can verify a single transaction without downloading the entire blockchain. All you need is the relevant authentication path - exactly what Bob needed to verify a single message without storing the entire tree.
 
-Now you may wonder, how is this whole construction relevant to the history of hashes we're currently covering. The thing is, those one-way functions H and F are hash functions. So each node of the Merkle tree basically stores a hash of some value. This saves a lot of storage space, since the output of a hash function is always a fixed-length number, and provides security, making the Merkle authentication tree a perfect foundation of a cryptocurrency.  
+Now you may wonder, how is this whole construction relevant to the history of hashes we're currently covering? The thing is, those one-way functions H and F are hash functions. So each node of the Merkle tree basically stores a hash of some value. This saves a lot of storage space since the output of a hash function is always a fixed-length number and provides security, making the Merkle authentication tree a perfect foundation for a cryptocurrency.  
 
 
 <br>
 ### My sources and further readings: 
-[Ralph Charles Merkle's PhD Thesis](https://www.ralphmerkle.com/papers/Thesis1979.pdf)
+[Ralph Charles Merkle's PhD thesis "Secrecy, Authentication, and Public Key Systems"](https://www.ralphmerkle.com/papers/Thesis1979.pdf)
 <br>
 ["Constructing Digital Signatures from a One Way Function" by Leslie Lamport](https://www.microsoft.com/en-us/research/publication/constructing-digital-signatures-one-way-function/)
 <br>
