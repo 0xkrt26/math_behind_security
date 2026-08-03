@@ -349,41 +349,7 @@ That's the tree after we deleted all the duplicates. Already so much less to sto
 
 Moreover, the modified version is just the Merkle tree itself but with flipped inner knots. Just compare the authentication paths with this scheme:
 
-```mermaid
-graph TD
-    %% Root Level
-    Root["H(1,8)"]
-
-	%% lvl2
-    Root --> H1234["H(1,4)"]
-    Root --> H5678["H(5,8)"]
-
-    %% lvl1
-    H1234 --> H12["H(1,2)"]
-    H1234 --> H34["H(3,4)"]
-    H5678 --> H56["H(5,6)"]
-    H5678 --> H78["H(7,8)"]
-
-    %% Leaves
-    H12 --> L1["H(1,1)"]
-    H12 --> L2["H(2,2)"]
-    H34 --> L3["H(3,3)"]
-    H34 --> L4["H(4,4)"]
-    H56 --> L5["H(5,5)"]
-    H56 --> L6["H(6,6)"]
-    H78 --> L7["H(7,7)"]
-    H78 --> L8["H(8,8)"]
-
-    %% Keys
-    L1 --> Ll1["Y_1"]
-    L2 --> Ll2["Y_2"]
-    L3 --> Ll3["Y_3"]
-    L4 --> Ll4["Y_4"]
-    L5 --> Ll5["Y_5"]
-    L6 --> Ll6["Y_6"]
-    L7 --> Ll7["Y_7"]
-    L8 --> Ll8["Y_8"]
-```
+![Merkle Tree](/math_behind_security/_posts/merkle_tree/merkle-tree1.png)
 
 <div style="font-style: italic; color: #734f96;">
 
@@ -396,34 +362,7 @@ What's even better is that there's no need for Alice to store most of the values
 
 Here's the updated tree for better visualisation:
 
-```mermaid
-graph TD
-    %% Root Level
-    Root["H(1,8)"]
-
-    %% lvl2
-    Root --> H1234["H(1,4)"]
-    Root --> H5678["H(5,8)"]
-
-    %% lvl1
-    H1234 --> H12["H(1,2)"]
-    H5678 --> H56["H(5,6)"]
-    H5678 --> H78["H(7,8)"]
-
-    %% Leaves
-    H34 --> L4["H(4,4)"]
-    H56 --> L5["H(5,5)"]
-    H56 --> L6["H(6,6)"]
-    H78 --> L7["H(7,7)"]
-    H78 --> L8["H(8,8)"]
-
-    %% Keys
-    L4 --> Ll4["Y_4"]
-    L5 --> Ll5["Y_5"]
-    L6 --> Ll6["Y_6"]
-    L7 --> Ll7["Y_7"]
-    L8 --> Ll8["Y_8"]
-```
+![Merkle Tree](/math_behind_security/_posts/merkle_tree/merkle-tree2.png)
 
 <br>
 ### But Alice probably has to store all the unused private keys X_i and public keys Y_i anyway, right?
