@@ -34,8 +34,7 @@ Rarely does someone want to sell the entire stock at once. Much more often, peop
 
 Alice would have had to choose j private keys x:
 
-<div align="left">
-$$
+\(
 \begin{matrix}
 x_1 \\
 x_2 \\
@@ -43,8 +42,7 @@ x_3 \\
 \vdots \\
 x_j
 \end{matrix}
-$$
-</div>
+\)
 
 and compute $2j \cdot F(x_j)$. These values she then shares with Bob as a public key in the form of a vector X_i. 
 
