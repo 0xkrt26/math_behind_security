@@ -442,3 +442,5 @@ Now you may wonder, how is this whole construction relevant to the history of ha
 ["Constructing Digital Signatures from a One Way Function" by Leslie Lamport](https://www.microsoft.com/en-us/research/publication/constructing-digital-signatures-one-way-function/)
 <br>
 ["Bitcoin: A Peer-to-Peer Electronic Cash System"](https://bitcoin.org/bitcoin.pdf)
+
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
