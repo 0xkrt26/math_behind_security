@@ -347,7 +347,7 @@ That's the tree after we deleted all the duplicates. Already so much less to sto
 
 Moreover, the modified version is just the Merkle tree itself but with flipped inner knots. Just compare the authentication paths with this scheme:
 
-<img src="/assets/images/merkle-tree1.png" alt="Merkle Tree" style="max-width: 100%;">
+<img src="/images/merkle-tree1.png" alt="Merkle Tree" style="max-width: 100%;">
 
 <div style="font-style: italic; color: #734f96;">
 
@@ -360,7 +360,7 @@ What's even better is that there's no need for Alice to store most of the values
 
 Here's the updated tree for better visualisation:
 
-<img src="/assets/images/merkle-tree2.png" alt="Merkle Tree" style="max-width: 100%;">
+<img src="/images/merkle-tree2.png" alt="Merkle Tree" style="max-width: 100%;">
 
 <br>
 ### But Alice probably has to store all the unused private keys X_i and public keys Y_i anyway, right?
