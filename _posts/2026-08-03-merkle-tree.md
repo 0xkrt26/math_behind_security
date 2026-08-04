@@ -273,6 +273,7 @@ Let's imagine in the form of a dialogue between Alice and Bob how exactly the fi
 **Alice:**
 
 $$H(5, 8, Y_{5,8})$$
+
 $$H(1, 4, Y_{1,4})$$
 
 **Bob:**
@@ -285,6 +286,7 @@ If yes, proceed.
 **Alice:**
 
 $$H(1, 2, Y_{1,2})$$
+
 $$H(3, 4, Y_{3,4})$$
 
 **Bob:**
@@ -296,6 +298,7 @@ If yes, proceed.
 **Alice:**
 
 $$H(1, 1, Y_1)$$
+
 $$H(2, 2, Y_2)$$
 
 **Bob:**
