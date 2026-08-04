@@ -449,7 +449,7 @@ Let's quickly take a look at what a blockchain is. The name speaks for itself: i
 
 The most common example of a blockchain would be Bitcoin. The paper "Bitcoin: A Peer-to-Peer Electronic Cash System" explicitly names the Merkle tree as a solution for Simplified Payment Verification. This means if you are buying Bitcoin but first want to make sure it's not a fraud, you can verify a single transaction without downloading the entire blockchain. All you need is the relevant authentication path — exactly what Bob needed to verify a single message without storing the entire tree.
 
-Now you may wonder, how is this whole construction relevant to the history of hashes we're currently covering? The thing is, those one-way functions $H$ and $F$ are hash functions. So each node of the Merkle tree basically stores a hash of some value. This proves that hash functions can not only protect your passwords but also authenticate huge constructions without overwhelming your storage or costing a fortune, making the Merkle tree one of the most important steps in cryptography.
+Now you may wonder, how is this whole construction relevant to the history of hashes we're currently covering? The thing is, those one-way functions $H$ and $F$ are hash functions. So each node of the Merkle tree basically stores a hash of some value. This proves that hash functions can not only protect your passwords but also authenticate huge constructions without overwhelming your storage or costing a fortune, making the Merkle tree one of the important steps in cryptography.
 
 <br>
 ### My sources and further readings:
