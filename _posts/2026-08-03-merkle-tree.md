@@ -345,7 +345,7 @@ Of course, it is possible to store this amount of data, but what if the number o
 
 Now with Merkle's improvement, Bob only stores the root value $R$, which, just like all other values here, is a fixed-length 100-bit value.
 
-**2.5 GB vs 100 bits. The difference is huge, isn't it?**
+2.5 GB vs 100 bits. The difference is huge, isn't it?
 
 <br>
 ### But Alice still has to store all those authentication paths, doesn't she?
