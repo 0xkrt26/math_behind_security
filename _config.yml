@@ -1,7 +1,7 @@
 theme: minima
 title: Math behind Security
 email: 0xkrt26@proton.me
-description: The mathematics behind why encryption works — and why it sometimes doesn't.       Explained by a math student.
+description: Explained by a math student.
 markdown: kramdown
 kramdown:
   math_engine: mathjax
