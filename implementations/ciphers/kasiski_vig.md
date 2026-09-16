@@ -40,43 +40,77 @@ The key length is most likely 18, but if it's not, we can always repeat the next
 The key length is 18, so let's make 18 groups:
 
 DIRAQAXEPAMFGQFZOSKFPEQMAOR 		Most common letter is A
+<br>
 EERUTFOESSLSSSHOIHOHUCNNHCO 		Most common letter is S
+<br>
 FKBKFPHWHMIIDXXGXDGXETVWTXK 		Most common letter is X
+<br>
 LLLVPLRVVPOBPJYSAPLPASYVZZT 		Most common letter is L
+<br>
 NBOXOJFOONBSESVZZETSXMZOBTB 		Most common letter is O
+<br>
 FOHRIVHPJTFTWIWXSWAWSITPVXX 		Most common letter is W
+<br>
 LPZZJKAFVVLVAAPVMHOLYKAFPVP 		Most common letter is V
+<br>
 ZLKMWLWIZZBAWTVCNZWKTIQBOBW 		Most common letter is W
+<br>
 ULNPABBSTGSRPLTFERJEQPBUUUA 		Most common letter is U
+<br>
 RRPUVRDHRDXLRZDDLQDHVLQHWH 		Most common letter is R
+<br>
 OMWWAVDOLFDLEAUKWGFLMHXHCZ 		Most common letter is W
+<br>
 AEYXWPMXXXJEQXSIRXXWGLYIIM 		Most common letter is X
+<br>
 JPRCVGMKGNKNWJFEFVVKJGPTAF 		Most common letter is J
+<br>
 YXQFYMYGHSFFHYYLMBIHWLWMAX 		Most common letter is Y
+<br>
 EPZGUKNVSKCFZRBVKVYKFFKFVV 		Most common letter is V
+<br>
 GWBPWPIACPMEKKVBPWQPLZQVBV 		Most common letter is P
+<br>
 HNATNTLTMBWXTAHLHGWXXTHPLY 		Most common letter is T
+<br>
 SPWZRRSLKQGBRMUMSJCYGLLFYL 		Most common letter is L
 
 But how do we determine the key? We could have just assumed that the most common letter in each group must be E, just like it is in the English language, but if we did that, we would have gotten:
 
 A=E => KEY = 0-4 = -4 = 22 = W
+<br>
 S=E => KEY = 18-4 = 14 = O	
+<br>
 X=E => KEY = 23-4 = 19 = T			
+<br>
 L=E => KEY = 11-4 = 7 = H	
+<br>
 O=E => KEY = 14-4 = 10 = K	
+<br>
 W=E => KEY = 22-4 = 18 = S	
+<br>
 V=E => KEY = 21-4 = 17 = R	
+<br>
 W=E => KEY = 22-4 = 18 = S	
+<br>
 U=E => KEY = 20-4 = 16 = Q	
+<br>
 R=E => KEY = 17-4 = 13 = N	
+<br>
 W=E => KEY = 22-4 = 18 = S	
+<br>
 X=E => KEY = 23-4 = 19 = T	
+<br>
 J=E => KEY = 9-4 = 5 = F	
+<br>
 Y=E => KEY = 24-4 = 20 = U	
+<br>
 V=E => KEY = 21-4 = 17 = R	
+<br>
 P=E => KEY = 15-4 = 11 = L	
+<br>
 T=E => KEY = 19-4 = 15 = P	
+<br>
 L=E => KEY = 11-4 = 7 = H	
 
 And as a person who encrypted the original text, I can assure you the key is either a word or a phrase, not just gibberish. 
