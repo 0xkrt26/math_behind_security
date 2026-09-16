@@ -49,37 +49,34 @@ This is a very simple encryption. Therefore, it's also very easy to crack either
 
 Another example is a Vigenère cipher. This one is more complicated, as the key is a word out of letters, so basically two alphabets are being shifted separately. Both encryption and decryption can be performed using the same Vigenère square:
 
-<div style="overflow-x: auto; font-family: monospace; font-size: 12px; line-height: 1.5; margin: 1rem 0;">
-<pre>
-   A B C D E F G H I J K L M N O P Q R S T U V W X Y Z
-A  A B C D E F G H I J K L M N O P Q R S T U V W X Y Z
-B  B C D E F G H I J K L M N O P Q R S T U V W X Y Z A
-C  C D E F G H I J K L M N O P Q R S T U V W X Y Z A B
-D  D E F G H I J K L M N O P Q R S T U V W X Y Z A B C
-E  E F G H I J K L M N O P Q R S T U V W X Y Z A B C D
-F  F G H I J K L M N O P Q R S T U V W X Y Z A B C D E
-G  G H I J K L M N O P Q R S T U V W X Y Z A B C D E F
-H  H I J K L M N O P Q R S T U V W X Y Z A B C D E F G
-I  I J K L M N O P Q R S T U V W X Y Z A B C D E F G H
-J  J K L M N O P Q R S T U V W X Y Z A B C D E F G H I
-K  K L M N O P Q R S T U V W X Y Z A B C D E F G H I J
-L  L M N O P Q R S T U V W X Y Z A B C D E F G H I J K
-M  M N O P Q R S T U V W X Y Z A B C D E F G H I J K L
-N  N O P Q R S T U V W X Y Z A B C D E F G H I J K L M
-O  O P Q R S T U V W X Y Z A B C D E F G H I J K L M N
-P  P Q R S T U V W X Y Z A B C D E F G H I J K L M N O
-Q  Q R S T U V W X Y Z A B C D E F G H I J K L M N O P
-R  R S T U V W X Y Z A B C D E F G H I J K L M N O P Q
-S  S T U V W X Y Z A B C D E F G H I J K L M N O P Q R
-T  T U V W X Y Z A B C D E F G H I J K L M N O P Q R S
-U  U V W X Y Z A B C D E F G H I J K L M N O P Q R S T
-V  V W X Y Z A B C D E F G H I J K L M N O P Q R S T U
-W  W X Y Z A B C D E F G H I J K L M N O P Q R S T U V
-X  X Y Z A B C D E F G H I J K L M N O P Q R S T U V W
-Y  Y Z A B C D E F G H I J K L M N O P Q R S T U V W X
-Z  Z A B C D E F G H I J K L M N O P Q R S T U V W X Y
-</pre>
-</div>
+| | A | B | C | D | E | F | G | H | I | J | K | L | M | N | O | P | Q | R | S | T | U | V | W | X | Y | Z |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| **A** | A | B | C | D | E | F | G | H | I | J | K | L | M | N | O | P | Q | R | S | T | U | V | W | X | Y | Z |
+| **B** | B | C | D | E | F | G | H | I | J | K | L | M | N | O | P | Q | R | S | T | U | V | W | X | Y | Z | A |
+| **C** | C | D | E | F | G | H | I | J | K | L | M | N | O | P | Q | R | S | T | U | V | W | X | Y | Z | A | B |
+| **D** | D | E | F | G | H | I | J | K | L | M | N | O | P | Q | R | S | T | U | V | W | X | Y | Z | A | B | C |
+| **E** | E | F | G | H | I | J | K | L | M | N | O | P | Q | R | S | T | U | V | W | X | Y | Z | A | B | C | D |
+| **F** | F | G | H | I | J | K | L | M | N | O | P | Q | R | S | T | U | V | W | X | Y | Z | A | B | C | D | E |
+| **G** | G | H | I | J | K | L | M | N | O | P | Q | R | S | T | U | V | W | X | Y | Z | A | B | C | D | E | F |
+| **H** | H | I | J | K | L | M | N | O | P | Q | R | S | T | U | V | W | X | Y | Z | A | B | C | D | E | F | G |
+| **I** | I | J | K | L | M | N | O | P | Q | R | S | T | U | V | W | X | Y | Z | A | B | C | D | E | F | G | H |
+| **J** | J | K | L | M | N | O | P | Q | R | S | T | U | V | W | X | Y | Z | A | B | C | D | E | F | G | H | I |
+| **K** | K | L | M | N | O | P | Q | R | S | T | U | V | W | X | Y | Z | A | B | C | D | E | F | G | H | I | J |
+| **L** | L | M | N | O | P | Q | R | S | T | U | V | W | X | Y | Z | A | B | C | D | E | F | G | H | I | J | K |
+| **M** | M | N | O | P | Q | R | S | T | U | V | W | X | Y | Z | A | B | C | D | E | F | G | H | I | J | K | L |
+| **N** | N | O | P | Q | R | S | T | U | V | W | X | Y | Z | A | B | C | D | E | F | G | H | I | J | K | L | M |
+| **O** | O | P | Q | R | S | T | U | V | W | X | Y | Z | A | B | C | D | E | F | G | H | I | J | K | L | M | N |
+| **P** | P | Q | R | S | T | U | V | W | X | Y | Z | A | B | C | D | E | F | G | H | I | J | K | L | M | N | O |
+| **Q** | Q | R | S | T | U | V | W | X | Y | Z | A | B | C | D | E | F | G | H | I | J | K | L | M | N | O | P |
+| **R** | R | S | T | U | V | W | X | Y | Z | A | B | C | D | E | F | G | H | I | J | K | L | M | N | O | P | Q |
+| **S** | S | T | U | V | W | X | Y | Z | A | B | C | D | E | F | G | H | I | J | K | L | M | N | O | P | Q | R |
+| **T** | T | U | V | W | X | Y | Z | A | B | C | D | E | F | G | H | I | J | K | L | M | N | O | P | Q | R | S |
+| **U** | U | V | W | X | Y | Z | A | B | C | D | E | F | G | H | I | J | K | L | M | N | O | P | Q | R | S | T |
+| **V** | V | W | X | Y | Z | A | B | C | D | E | F | G | H | I | J | K | L | M | N | O | P | Q | R | S | T | U |
+| **W** | W | X | Y | Z | A | B | C | D | E | F | G | H | I | J | K | L | M | N | O | P | Q | R | S | T | U | V |
+| **X** | X | Y | Z | A | B | C | D | E | F | G | H | I | J | K | L | M | N | O | P | Q | R | S | T | U | V | W |
+| **Y** | Y | Z | A | B | C | D | E | F | G | H | I | J | K | L | M | N | O | P | Q | R | S | T | U | V | W | X |
+| **Z** | Z | A | B | C | D | E | F | G | H | I | J | K | L | M | N | O | P | Q | R | S | T | U | V | W | X | Y |
 
 Alternatively, we could imagine all letters as numbers:
 
