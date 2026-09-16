@@ -115,9 +115,7 @@ L=E => KEY = 11-4 = 7 = H
 
 And as a person who encrypted the original text, I can assure you the key is either a word or a phrase, not just gibberish. 
 
-*This could have worked, though, if our text sample were longer.*
-
-This is why we should take a look not at just one most common letter but preferably 3-4 of them. From here we have two options. 
+This would have worked, if our text sample were longer. But since it's not, we should take a look not at just one most common letter but preferably 3-4 of them. From here we have two options. 
 
 ### Option 1.
 
