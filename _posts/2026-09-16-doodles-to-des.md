@@ -28,18 +28,9 @@ Remember how when you were a kid, you and your friends came up with your own sec
 Though kids are not the only ones who want to hide their secrets. In the adult world, such code is called a cipher or an encryption function. Only the person who has a right key gets access to the hidden information.
 
 <br>
-### Is it the same as a hash function?
-
-No. Even though both hash and encryption functions provide certain security, each of them has distinct properties and therefore different areas of application.
-
-Hash functions are irreversible, which makes them perfect for authentication (a detailed explanation with an example can be found in my previous [post](https://0xkrt26.github.io/math_behind_security/2026/08/03/merkle-tree.html) about digital signatures).
-
-Encryption has, in turn, a reverse process called decryption, which reveals the original plaintext to anyone who has a key. This makes the cipher a perfect tool for chatting in privacy. For example, each time you start a new chat in WhatsApp, you see something like "Messages and calls are end-to-end encrypted."
-
-<br>
 ### What encryption functions are there?
 
-I'm sure you have heard of the Caesar cipher. It creates a new alphabet by shifting letters of the old one by n positions. So if we had a word, CAESAR, and we would want to encrypt it with a key n=3, we would get:
+I'm sure you have heard of the Caesar cipher, one of the oldest ciphers in history. It creates a new alphabet by shifting letters of the old one by n positions. So if we had a word, CAESAR, and we would want to encrypt it with a key n=3, we would get:
 
 ```
 CAESAR -> FDHVDU
@@ -513,7 +504,16 @@ No. The main security mechanisms are S-boxes: they take in 6 bits but give out o
 However, the algorithm was still retired on 19.05.2005 simply because hardware became capable enough to crack an encryption by brute-forcing all possible $2^{56}$ keys. Now the Advanced Encryption Standard (AES) is used instead, but this is a topic for another time.
 
 <br>
-### How are ciphers connected to the history of hashes we have been talking about in all the previous posts?
+### Are encryption and hash functions the same thing?
+
+No. Even though both hash and encryption functions provide certain security, each of them has distinct properties and therefore different areas of application.
+
+Hash functions are irreversible, which makes them perfect for authentication (a detailed explanation with an example can be found in my previous [post](https://0xkrt26.github.io/math_behind_security/2026/08/03/merkle-tree.html) about digital signatures).
+
+Encryption has, in turn, a reverse process called decryption, which reveals the original plaintext to anyone who has a key. This makes the cipher a perfect tool for chatting in privacy. For example, each time you start a new chat in WhatsApp, you see something like "Messages and calls are end-to-end encrypted."
+
+<br>
+### Then how are ciphers connected to the history of hashes we have been talking about in all the previous posts?
 
 You see, I was about to cover the next step in the history of hashes, but that construction was based on DES, so I thought a separate post that introduces the concept of ciphers properly might be a good idea. Small spoiler for the future post: a compression function combined with a symmetric block cipher (such as DES) gives you a cryptographically secure hash function. Exactly our goal!
 
