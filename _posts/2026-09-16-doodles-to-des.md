@@ -376,9 +376,24 @@ Then to both parts we apply a circular shift left operation, which basically mov
 
 How big n is depends on the round r:
 
-| Round | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 |
-|-------|---|---|---|---|---|---|---|---|---|----|----|----|----|----|----|----|
-| n     | 1 | 1 | 2 | 2 | 2 | 2 | 2 | 2 | 1 | 2  | 2  | 2  | 2  | 2  | 2  | 1  |
+| Round | Left Shift (n) |
+|---|---|
+| 1 | 1 |
+| 2 | 1 |
+| 3 | 2 |
+| 4 | 2 |
+| 5 | 2 |
+| 6 | 2 |
+| 7 | 2 |
+| 8 | 2 |
+| 9 | 1 |
+| 10 | 2 |
+| 11 | 2 |
+| 12 | 2 |
+| 13 | 2 |
+| 14 | 2 |
+| 15 | 2 |
+| 16 | 1 |
 
 After each round a subkey is produced by permutating C and D again, this time using PC-2:
 
