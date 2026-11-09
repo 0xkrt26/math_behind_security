@@ -15,7 +15,7 @@ mjx-container[display="true"] {
 
 <div style="font-style: italic; color: #734f96;">
 
-A Python implementation for a Merkle-Damgård construction is available in [my GitHub repository](https://github.com/0xkrt26/math_behind_security/blob/main/implementations/merkle-damgard.py)
+A Python implementation for a Merkle-Damgård construction is available in <a href="https://github.com/0xkrt26/math_behind_security/blob/main/implementations/merkle-damgard.py">my GitHub repository</a>
 
 </div>
 <br>
@@ -82,11 +82,11 @@ Though we must make sure that outputs are not identical, otherwise it won't give
 <div style="font-style: italic; color: #734f96;">
 
 Why can't we just take the first 119 and last 119 bits of the input?
-
+<br>
 To ensure that inputs are truly different, we have to add some forced uniqueness. Imagine the input is 1111...11111, then both the first and the last 119 bits are just 1s. But if we force the first bit of each input to be different, we will definitely get different outputs.
-
+<br>
 Why do we take only 112 bits of the output?
-
+<br>
 First, we simply don't need more. In the era of DES, 112 bits were giving enough security against collision attacks. The number comes from a formula that shows how many operations it takes to find a collision for an <span markdown="0">$n$</span>-bit long hash function (about <span markdown="0">$2^{n/2}$</span> operations). Moreover, for long texts, the function <span markdown="0">$F_1$</span> will be applied several times, and since DES input is at most 120 bits, we will have to get rid of the rest anyway. Besides, we would want to add some new bits before each new cycle. How many bits we can add defines how efficient our function <span markdown="0">$F_1$</span> is. So the fewer bits we carry on from the last cycle, the better.
 
 </div>
@@ -133,6 +133,7 @@ $$\begin{array}{lcl}
 \end{array}$$
 </div>
 
+<br>
 <div style="font-style: italic; color: #734f96;">
 
 Notice that here we leave the output 128 bits long, instead of cutting it down to only 112 bits how we did it before. Why? It was a part that I couldn't understand for some time, but it turned out to be a bit simpler than it sounded. 
