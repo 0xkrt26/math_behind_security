@@ -240,8 +240,8 @@ The length block will help to differentiate such inputs:
 
 <div markdown="0">
 $$\begin{aligned}
-m_1 &= \textbf{010101100}\,000\,\textit{1001} \\
-m_2 &= \textbf{0101011}\,00000\,\textit{0111}
+m_1 &= \textbf{010101100}\,000\,\textbf{1001} \\
+m_2 &= \textbf{0101011}\,00000\,\textbf{0111}
 \end{aligned}$$
 </div>
 
