@@ -82,11 +82,11 @@ Though we must make sure that outputs are not identical, otherwise it won't give
 <div style="font-style: italic; color: #734f96;">
 
 Why can't we just take the first 119 and last 119 bits of the input?
-<br>
+<br><br>
 To ensure that inputs are truly different, we have to add some forced uniqueness. Imagine the input is 1111...11111, then both the first and the last 119 bits are just 1s. But if we force the first bit of each input to be different, we will definitely get different outputs.
-<br>
+<br><br>
 Why do we take only 112 bits of the output?
-<br>
+<br><br>
 First, we simply don't need more. In the era of DES, 112 bits were giving enough security against collision attacks. The number comes from a formula that shows how many operations it takes to find a collision for an <span markdown="0">$n$</span>-bit long hash function (about <span markdown="0">$2^{n/2}$</span> operations). Moreover, for long texts, the function <span markdown="0">$F_1$</span> will be applied several times, and since DES input is at most 120 bits, we will have to get rid of the rest anyway. Besides, we would want to add some new bits before each new cycle. How many bits we can add defines how efficient our function <span markdown="0">$F_1$</span> is. So the fewer bits we carry on from the last cycle, the better.
 
 </div>
@@ -137,7 +137,7 @@ $$\begin{array}{lcl}
 <div style="font-style: italic; color: #734f96;">
 
 Notice that here we leave the output 128 bits long, instead of cutting it down to only 112 bits how we did it before. Why? It was a part that I couldn't understand for some time, but it turned out to be a bit simpler than it sounded. 
-
+<br><br>
 Look at our bit math. We are squeezing 118 bits into 64 bits twice. This creates sort of a bottleneck, which compromises the randomness of the function and the security of the proof. It can happen that middle values collide, which will make it a little bit "easier" for the attacker to brute force. Merkle proves that keeping all 128 bits should return a security level of somewhat more than <span markdown="0">$2^{56}$</span> operations for <span markdown="0">$F_2$</span>.
 
 </div>
@@ -231,8 +231,8 @@ After padding (let's say the chunk has to be 16 bits), we get the same sequences
 
 <div markdown="0">
 $$\begin{aligned}
-m_1 &= \textit{010101100}\,0000000 \\
-m_2 &= \textit{0101011}\,000000000
+m_1 &= \textbf{010101100}\,0000000 \\
+m_2 &= \textbf{0101011}\,000000000
 \end{aligned}$$
 </div>
 
@@ -240,8 +240,8 @@ The length block will help to differentiate such inputs:
 
 <div markdown="0">
 $$\begin{aligned}
-m_1 &= \textit{010101100}\,000\,\textit{1001} \\
-m_2 &= \textit{0101011}\,00000\,\textit{0111}
+m_1 &= \textbf{010101100}\,000\,\textit{1001} \\
+m_2 &= \textbf{0101011}\,00000\,\textit{0111}
 \end{aligned}$$
 </div>
 
