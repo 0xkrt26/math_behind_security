@@ -27,10 +27,10 @@ We have a problem! We need a secure hash function that will be computed fast eno
 
 A secure hash function has all the following properties:
 
-1. It works for all the lengths of inputs (both for one sign and for the longest book there is)
-2. It produces a fixed-size output (in our case 112 or 128 bits long. I'll explain a bit later where the number comes from)
-3. It's easy to compute
-4. It's pre-image resistant: you can't decrypt it or reverse it even if you know the function (more about it in my post about [Diffie-Hellman](https://0xkrt26.github.io/math_behind_security/2026/06/09/the-story-of-the-hash-function.html))
+1. It works for all the lengths of inputs (both for one character and for the longest book there is)
+2. It produces a fixed-size output;
+3. It's easy to compute;
+4. It's pre-image resistant: you can't reverse it even if you know the function (more about it in my post about [Diffie-Hellman](https://0xkrt26.github.io/math_behind_security/2026/06/09/the-story-of-the-hash-function.html))
 5. It's second preimage resistant: you can't find another input <span markdown="0">$x'$</span> that will produce the same output as your input <span markdown="0">$x$</span>
 6. It is collision resistant: it'd take too long to find two inputs that produce the same output (read more about [the birthday problem here](https://0xkrt26.github.io/math_behind_security/2026/05/08/birthday-problem.html))
 
@@ -42,7 +42,7 @@ Now the whole construction of the hash function can be divided into two layers: 
 <br>
 ### First try.
 
-Let's take a secure symmetrical block cipher like DES (if you don't know what it is, take a look at my [previous post](https://0xkrt26.github.io/math_behind_security/2026/09/16/doodles-to-des.html).
+Let's take a secure symmetrical block cipher like DES (if you don't know what it is, take a look at my [previous post](https://0xkrt26.github.io/math_behind_security/2026/09/16/doodles-to-des.html)).
 
 <div markdown="0">
 $$\text{DES} = \text{ENCRYPT}(\text{key}, \text{plaintext})$$
