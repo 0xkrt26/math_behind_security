@@ -15,7 +15,7 @@ mjx-container[display="true"] {
 
 <div style="font-style: italic; color: #734f96;">
 
-A Python implementation for a Merkle-Damgård construction is available in [my GitHub repository](https://github.com/0xkrt26/math_behind_security/blob/main/implementations/merkle-damgard.py)
+A Python implementation for a Merkle-Damgård construction is available in <a href="https://github.com/0xkrt26/math_behind_security/blob/main/implementations/merkle-damgard.py"> my GitHub repository</a>
 
 </div>
 <br> 
@@ -235,7 +235,7 @@ We've built a collision-resistant compression function <span markdown="0">$F_3$<
 
 <br>
 
-  **1.** If compression function <span markdown="0">$F$</span> is collision-resistant, then a hash function <span markdown="0">$H$</span> is also collision-resistant for all the inputs of the same length.
+  **1. If compression function <span markdown="0">$F$</span> is collision-resistant, then a hash function <span markdown="0">$H$</span> is also collision-resistant for all the inputs of the same length.**
 
 This step can be proved by induction. 
 
@@ -276,7 +276,7 @@ This means a hash function <span markdown="0">$H$</span> can produce the same ou
 
 <br>
 
-  **2.** If a hash function <span markdown="0">$H$</span> is collision-resistant for all the inputs of the same length, then it is collision-resistant for all the inputs of the different length (considering the input included the length block):
+  **2. If a hash function <span markdown="0">$H$</span> is collision-resistant for all the inputs of the same length, then it is collision-resistant for all the inputs of the different length (considering the input included the length block).**
 
 This one is even easier to prove. Assume we have two inputs of different lengths: <span markdown="0">$M$</span> and <span markdown="0">$M'$</span>. Let's say <span markdown="0">$M$</span> is shorter than <span markdown="0">$M'$</span>, and their hashes happen to be equal:
 
