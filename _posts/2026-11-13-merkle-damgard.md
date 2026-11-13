@@ -235,7 +235,7 @@ We've built a collision-resistant compression function <span markdown="0">$F_3$<
 
 <br>
 
-1. If compression function <span markdown="0">$F$</span> is collision-resistant, then a hash function <span markdown="0">$H$</span> is also collision-resistant for all the inputs of the same length.
+  **1.** If compression function <span markdown="0">$F$</span> is collision-resistant, then a hash function <span markdown="0">$H$</span> is also collision-resistant for all the inputs of the same length.
 
 This step can be proved by induction. 
 
@@ -247,7 +247,7 @@ If the input consists only of one chunk <span markdown="0">$M$</span>, the compr
 
 Now we can assume a compression function <span markdown="0">$F$</span> applied to <span markdown="0">$k$</span> inputs is collision-resistant. We will call the output of it <span markdown="0">$H(M_k)$</span>. Now we need to prove that it's also secure for <span markdown="0">$k+1$</span> inputs (that <span markdown="0">$H(M_{k+1})$</span> is secure).
 
-To do that let's take two different messages <span markdown="0">$M$</span> and <span markdown="0">$M'$</span> of the same length, that produced the same outputs and look at the last compression function application <span markdown="0">$F_{k+1}$</span> and the inputs of it: last chunks <span markdown="0">$M_{k+1}$</span> and <span markdown="0">$M_{k+1}'$</span> and outputs of <span markdown="0">$H(M_k)$</span> and <span markdown="0">$H(M_k')$</span>. 
+To do that, let's take two different messages <span markdown="0">$M$</span> and <span markdown="0">$M'$</span> of the same length that produce the same outputs and look at the last compression function application <span markdown="0">$F_{k+1}$</span> and the inputs of it: last chunks <span markdown="0">$M_{k+1}$</span> and <span markdown="0">$M_{k+1}'$</span> and outputs of <span markdown="0">$H(M_k)$</span> and <span markdown="0">$H(M_k')$</span>. 
 
 <br>
 
@@ -270,13 +270,13 @@ The inputs were different, but the function <span markdown="0">$F_{k+1}$</span> 
 $$(H(M_k), M_{k+1}) = (H(M_k'), M_{k+1}')$$
 </div>
 
-We know that <span markdown="0">$M$</span> and <span markdown="0">$M'$</span> are two different messages, so either <span markdown="0">$M_{k+1}$</span> and <span markdown="0">$M_{k+1}'$</span> are different (contradicts the Case 2 assumption), or one of the chains <span markdown="0">$H(M_k)$</span> or <span markdown="0">$H(M_k')$</span> produced the same output for different inputs, and therefore, is not collsion-resistant (contradiction to the induction hypothesis). 
+We know that <span markdown="0">$M$</span> and <span markdown="0">$M'$</span> are two different messages, so either <span markdown="0">$M_{k+1}$</span> and <span markdown="0">$M_{k+1}'$</span> are different (contradicts the Case 2 assumption), or one of the chains <span markdown="0">$H(M_k)$</span> or <span markdown="0">$H(M_k')$</span> produced the same output for different inputs, and therefore, is not collision-resistant (contradiction to the induction hypothesis). 
 
-This means, a hash function <span markdown="0">$H$</span> can produce the same output for two messages only if either those messages were identical or the compression function <span markdown="0">$F$</span> was not collision resistant. 
+This means a hash function <span markdown="0">$H$</span> can produce the same output for two messages only if either those messages were identical or the compression function <span markdown="0">$F$</span> was not collision resistant. 
 
 <br>
 
-2. If a hash function <span markdown="0">$H$</span> is collision-resistant for all the inputs of the same length, then it is collision-resistant for all the inputs of the different length (considering the input included the length block):
+  **2.** If a hash function <span markdown="0">$H$</span> is collision-resistant for all the inputs of the same length, then it is collision-resistant for all the inputs of the different length (considering the input included the length block):
 
 This one is even easier to prove. Assume we have two inputs of different lengths: <span markdown="0">$M$</span> and <span markdown="0">$M'$</span>. Let's say <span markdown="0">$M$</span> is shorter than <span markdown="0">$M'$</span>, and their hashes happen to be equal:
 
@@ -308,7 +308,7 @@ Merkle-Damgård construction became the base of the modern hash functions. Its c
 <br>
 [Ivan Damgård "A Design Principle for Hash Functions"](https://www.researchgate.net/publication/221354712_A_Design_Principle_for_Hash_Functions)
 <br>
-[Gideon Yuval "How to swindle Rabin"](https://www.tandfonline.com/doi/abs/10.1080/0161-117991854025) - you have to pay for access or use your university access
+[Gideon Yuval "How to swindle Rabin"](https://www.tandfonline.com/doi/abs/10.1080/0161-117991854025) 
 <br>
 [Michael O. Rabin "Digitalized signatures"](https://scispace.com/pdf/foundations-of-secure-computation-1ehszkx7l1.pdf)
 
