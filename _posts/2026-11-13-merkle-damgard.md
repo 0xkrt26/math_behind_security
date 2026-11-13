@@ -15,7 +15,7 @@ mjx-container[display="true"] {
 
 <div style="font-style: italic; color: #734f96;">
 
-A Python implementation for a Merkle-Damgård construction is available in <a href="https://github.com/0xkrt26/math_behind_security/blob/main/implementations/merkle-damgard.py"> my GitHub repository</a>
+A Python implementation for a Merkle-Damgård construction is available in <a href="https://github.com/0xkrt26/math_behind_security/blob/main/implementations/merkle-damgard.py"> my GitHub repository</a>.
 
 </div>
 <br> 
