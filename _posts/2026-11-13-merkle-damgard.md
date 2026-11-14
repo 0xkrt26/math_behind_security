@@ -181,7 +181,7 @@ This upgrade lets us add 106 new bits per iteration, which means we have to appl
 
 The bit math scheme of <span markdown="0">$F_3$</span> looks like a binary tree, which means that theoretically it could grow bigger and bigger. 
 
-However, there are two "be careful" points: the distance between gained bits gets smaller and smaller (<span markdown="0">$3.5 \rightarrow 11 \rightarrow 17.7$</span>) and the chance of collision without additional security methods gets bigger and bigger. Notice that already for the next upgrade, 128 bits won't be enough to keep the <span markdown="0">$2^{56}$</span> operations security level. So it might not be worse it. 
+However, there are two "be careful" points: the distance between gained bits gets smaller and smaller (<span markdown="0">$3.5 \rightarrow 11 \rightarrow 17.7$</span>) and the chance of collision without additional security methods gets bigger and bigger. Notice that already for the next upgrade, 128 bits won't be enough to keep the <span markdown="0">$2^{56}$</span> operations security level. So it might not be worth it. 
 
 Therefore, let's stop at <span markdown="0">$F_3$</span> for now. 
 
