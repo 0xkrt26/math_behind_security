@@ -1,0 +1,180 @@
+---
+title: My first CTF challenge
+date: 2026-11-26
+---
+
+A few days ago I took part in a CTF competition for the first time. And it went much better than I expected. I managed to solve one easy-level task from Crypto and one-medium level task from Misc. Here I'll share how I solved the tasks and my impression from the event in general.
+
+<br>
+
+### Crypto Task
+
+The first one from the Crypto section was very easy, as it was supposed to be. In the challenge folder there was an image of a Go board, with white and black stones placed closely together like this:
+
+```
+⚫⚪⚪⚫⚪⚫⚫⚫⚫⚫⚪⚪⚫⚪⚫⚫⚫⚪⚪
+⚪⚫⚪⚫⚫⚫⚪⚪⚪⚫⚪⚫⚪⚫⚪⚪⚫⚪⚪
+⚫⚪⚫⚪⚪⚪⚪⚫⚪⚪⚫⚪⚪⚫⚫⚪⚪⚪⚫
+⚪⚪⚫⚪⚪⚪⚪⚫⚪⚫⚪⚪⚪⚪⚪⚫⚪⚪⚫
+⚪⚫⚫⚪⚫⚪⚪⚪⚫⚫⚪⚪⚫⚪⚫⚪⚪⚪⚪
+⚪⚫⚪⚪⚫⚫⚫⚪⚫⚫⚪⚪⚫⚪⚫⚫⚪⚫⚪
+⚪⚫⚪⚪⚪⚫⚫⚪⚪⚫⚫⚫⚫⚪⚫⚪⚪⚪⚫
+⚫⚪⚫⚫⚪⚪⚪⚪⚫⚫⚪⚫⚪⚪⚪⚪⚪⚫⚪
+```
+
+This was obviously just a binary code that gave the flag: `h4tum{go_is_binary}`
+
+### Misc Task
+
+The second task I solved was from the Misc section. The task had three folders inside:
+
+```
+├── battle
+│   ├── python code of the battle
+│   └── flag.txt (encrypted)
+├── key
+│   ├── a scrambled key
+│   └── python code that scrambled the key
+└── weapons
+    ├── txt file with info about weapons (encrypted)
+    ├── txt file with coordinates of the enemy (encrypted)
+    └── python code that encrypted these txt files
+```
+
+The correct order of actions would have been:
+
+1. Unscramble the key
+2. Use the key to decrypt txt files from weapons
+3. Give bomb coordinates into the battle.py
+4. Get the flag
+
+I am not a big fan of writing programs, which I would have to do if I wanted to unscramble the key, so I just skipped the step. And saved myself some time. Turns out the txt files in the weapon folder were encrypted using the Vigenère cipher. And as we know, that one can be cracked using Kasiski examination (which I wrote about [here](https://0xkrt26.github.io/math_behind_security/2026/09/16/vigenere.html)). It was a pretty long text, so this [online tool](https://www.dcode.fr/vigenere-cipher) found the key on the first attempt and decrypted the following:
+
+> There is zero margin for error. Can you map the exact drop coordinates to turn their entire fleet into space dust?
+
+```
+AMMUNITION DETECTED = ELEVEN
+PAYLOAD YIELD = THREExTHREE MATRIX EXPLOSION RADIUS WITH THE COORDINATES IN THE CENTRE
+WARNING: INSUFFICIENT MUNITIONS FOR BRUTE FORCE.
+TARGET: COMPLETE ERADICATION OF ALIEN ARMADA.
+```
+
+And:
+
+```
+COORDINATES
+ONE THREE ONE
+TWO FIVE THREE
+THREE THREE NINE
+FOUR FIVE ELEVEN
+FIVE THREE NINETEEN
+SIX FIVE TWENTY ONE
+SEVEN THREE TWENTY NINE
+EIGHT FIVE THIRTY ONE
+NINE NINE FOUR
+TEN ELEVEN SIX
+ELEVEN NINE FOURTEEN
+TWELVE ELEVEN SIXTEEN
+THIRTEEN NINE TWENTY FOUR
+FOURTEEN ELEVEN TWENTY SIX
+FIFTEEN FIFTEEN NINE
+SIXTEEN SEVENTEEN ELEVEN
+SEVENTEEN FIFTEEN NINETEEN
+EIGHTEEN SEVENTEEN TWENTY ONE
+NINETEEN TWENTY ONE FOUR
+TWENTY TWENTY THREE SIX
+TWENTY ONE TWENTY ONE FOURTEEN
+TWENTY TWO TWENTY THREE SIXTEEN
+```
+
+Though another part for some reason didn't want to be decrypted by online tools, it wasn't a problem since it was obviously a table of ones and zeroes (I have already substituted the word "one" with "1"):
+
+```
++---------------------------------------------------------------------------------------------------------------------------------------------+
+|                                                                                                                                             |
+|     00   01   02   03   04   05   06   07   08   09   10   11   12   13   14   15   16   17   18   19   20   21   22   23   24              |
+| 00  seig gmgg seig gmgg seig gmgg seig gmgg seig gmgg seig gmgg seig gmgg seig gmgg seig gmgg seig gmgg seig gmgg seig gmgg seig            |
+| 01  gmgg seig gmgg 1    rlzd rxrf rlzd rxrf rlzd rxrf rlzd rxrf rlzd rxrf rlzd rxrf rlzd rxrf rlzd rxrf rlzd rxrf rlzd rxrf rlzd            |
+| 02  rxrf rlzd rxrf rlzd rxrf rlzd rxrf rlzd rxrf rlzd rxrf rlzd rxrf rlzd rxrf rlzd rxrf rlzd rxrf rlzd rxrf rlzd rxrf rlzd rxrf            |
+| 03  rlzd rxrf rlzd rxrf rlzd 1    qwyw owko qwyw owko qwyw owko qwyw owko qwyw owko qwyw owko qwyw owko qwyw owko qwyw owko qwyw            |
+| 04  owko qwyw owko qwyw owko qwyw owko qwyw owko 1    htjh zvjv htjh zvjv htjh zvjv htjh zvjv htjh zvjv htjh 1    gmgg seig gmgg            |
+| 05  seig gmgg seig gmgg seig gmgg seig gmgg seig gmgg seig gmgg seig gmgg seig gmgg seig gmgg seig gmgg seig gmgg seig gmgg seig            |
+| 06  gmgg seig gmgg seig gmgg seig gmgg seig gmgg seig gmgg 1    rlzd rxrf rlzd rxrf rlzd rxrf rlzd rxrf rlzd rxrf rlzd 1    qwyw            |
+| 07  owko qwyw owko qwyw owko qwyw owko qwyw owko qwyw owko qwyw owko qwyw owko qwyw owko qwyw owko qwyw owko qwyw owko qwyw owko            |
+| 08  qwyw owko qwyw owko qwyw owko qwyw owko qwyw owko qwyw owko qwyw owko qwyw owko qwyw owko qwyw owko qwyw owko qwyw owko qwyw            |
+| 09  owko qwyw owko 1    htjh zvjv htjh zvjv htjh zvjv htjh zvjv htjh zvjv htjh 1    gmgg seig gmgg seig gmgg seig gmgg seig gmgg            |
+| 10  seig gmgg seig gmgg seig gmgg seig gmgg seig gmgg seig gmgg seig gmgg seig gmgg seig gmgg seig gmgg seig gmgg seig gmgg seig            |
+| 11  gmgg seig gmgg seig gmgg 1    rlzd rxrf rlzd rxrf rlzd rxrf rlzd rxrf rlzd rxrf rlzd 1    qwyw owko qwyw owko qwyw owko qwyw            |
+| 12  owko qwyw owko qwyw owko qwyw owko qwyw owko qwyw owko qwyw owko qwyw owko qwyw owko qwyw owko qwyw owko qwyw owko qwyw owko            |
+| 13  qwyw owko qwyw owko qwyw owko qwyw owko qwyw owko qwyw owko qwyw owko qwyw owko qwyw owko qwyw owko qwyw owko qwyw owko qwyw            |
+| 14  owko qwyw owko qwyw owko qwyw owko qwyw owko 1    htjh zvjv htjh zvjv htjh zvjv htjh zvjv htjh zvjv htjh 1    gmgg seig gmgg            |
+| 15  seig gmgg seig gmgg seig gmgg seig gmgg seig gmgg seig gmgg seig gmgg seig gmgg seig gmgg seig gmgg seig gmgg seig gmgg seig            |
+| 16  gmgg seig gmgg seig gmgg seig gmgg seig gmgg seig gmgg 1    rlzd rxrf rlzd rxrf rlzd rxrf rlzd rxrf rlzd rxrf rlzd 1    qwyw            |
+| 17  owko qwyw owko qwyw owko qwyw owko qwyw owko qwyw owko qwyw owko qwyw owko qwyw owko qwyw owko qwyw owko qwyw owko qwyw owko            |
+| 18  qwyw owko qwyw owko qwyw owko qwyw owko qwyw owko qwyw owko qwyw owko qwyw owko qwyw owko qwyw owko qwyw owko qwyw owko qwyw            |
+| 19  owko qwyw owko 1    htjh zvjv htjh zvjv htjh zvjv htjh zvjv htjh zvjv htjh 1    gmgg seig gmgg seig gmgg seig gmgg seig gmgg            |
+| 20  seig gmgg seig gmgg seig gmgg seig gmgg seig gmgg seig gmgg seig gmgg seig gmgg seig gmgg seig gmgg seig gmgg seig gmgg seig            |
+| 21  gmgg seig gmgg seig gmgg 1    rlzd rxrf rlzd rxrf rlzd rxrf rlzd rxrf rlzd rxrf rlzd 1    qwyw owko qwyw owko qwyw owko qwyw            |
+| 22  owko qwyw owko qwyw owko qwyw owko qwyw owko qwyw owko qwyw owko qwyw owko qwyw owko qwyw owko qwyw owko qwyw owko qwyw owko            |
+| 23  qwyw owko qwyw owko qwyw owko qwyw owko qwyw owko qwyw owko qwyw owko qwyw owko qwyw owko qwyw owko qwyw owko qwyw owko qwyw            |
+| 24  owko qwyw owko qwyw owko qwyw owko qwyw owko 1    htjh zvjv htjh zvjv htjh zvjv htjh zvjv htjh zvjv htjh zvjv htjh zvjv htjh            |
+| 25  zvjv htjh zvjv htjh zvjv htjh zvjv htjh zvjv htjh zvjv htjh zvjv htjh zvjv htjh zvjv htjh zvjv htjh zvjv htjh zvjv htjh zvjv            |
+| 26  htjh zvjv htjh zvjv htjh zvjv htjh zvjv htjh zvjv htjh 1    gmgg seig gmgg seig gmgg seig gmgg seig gmgg seig gmgg seig gmgg            |
+| 27  seig gmgg seig gmgg seig gmgg seig gmgg seig gmgg seig gmgg seig gmgg seig gmgg seig gmgg seig gmgg seig gmgg seig gmgg seig            |
+| 28  gmgg seig gmgg seig gmgg seig gmgg seig gmgg seig gmgg seig gmgg seig gmgg seig gmgg seig gmgg seig gmgg seig gmgg seig gmgg            |
+| 29  seig gmgg seig 1    rxrf rlzd rxrf rlzd rxrf rlzd rxrf rlzd rxrf rlzd rxrf rlzd rxrf rlzd rxrf rlzd rxrf rlzd rxrf rlzd rxrf            |
+| 30  rlzd rxrf rlzd rxrf rlzd rxrf rlzd rxrf rlzd rxrf rlzd rxrf rlzd rxrf rlzd rxrf rlzd rxrf rlzd rxrf rlzd rxrf rlzd rxrf rlzd            |
+| 31  rxrf rlzd rxrf rlzd rxrf 1    owko qwyw owko qwyw owko qwyw owko qwyw owko qwyw owko qwyw owko qwyw owko qwyw owko qwyw owko            |
+| 32  qwyw owko qwyw owko qwyw owko qwyw owko qwyw owko qwyw owko qwyw owko qwyw owko qwyw owko qwyw owko qwyw owko qwyw owko qwyw            |
+|                                                                                                                                             |
++---------------------------------------------------------------------------------------------------------------------------------------------+
+```
+
+I must admit I got a bit stuck here. Mostly because of my battle skills. The python file in the battle folder was asking for the bomb coordinates. I thought I either needed to find a bomb among the 1s or that I had only one bomb to drop. But after some brainstorming and more careful analysis (it was at this point that I substituted "one"s with "1"s), I noticed the pattern in the table: all the ones could be divided into pairs that were in the corners of a 3x3 matrixes.
+
+So I gave in the following coordinates:
+
+```
+(2,4)
+(10,4)
+(20,4)
+(30,4)
+
+(5,10)
+(15,10)
+(25,10)
+
+(10,16)
+(20,16)
+
+(5,22)
+(15,22)
+```
+
+..and destroyed the Alien Armada!
+
+<br>
+
+### Other challenges and my struggles
+
+As you might already know, I have a blog about cryptography, my main target was Crypto section. But all of the challenges there except for that easy one required connection to the server. I tried downloading ncat, but something didn't work out, so I focused on the tasks, that didn't require the connection, like the misc task above.
+
+<div style="font-style: italic; color: #734f96;">
+
+Yes, we were allowed to use AI as a search engine and I could look it up there. But I was still a bit too worried that it might be considered as cheating. And since I've joined a random team just a few minutes before the start, I didn't want to let anyone down by accidentally getting us disqualified. So I decided to leave the connection problem for later.
+
+</div>
+
+That's why I tried another misc challenge, that I wasted so so much time on. It was supposed to be the easy one by the way. The challenge folder had only a picture of a vertically squished QR code with the caption "Trust me, the closer you look the less you see."
+
+My first idea was obviously to scan the QR code, however it gave no flag. Then I decided not to trust the caption and started analyzing the picture closer. I tried interpreting black and white lines as binary or morse code (it did make sense to me from how the lines looked). And I spent so much time on it that I swear I was already hallucinating the answer in morse saying "Never trust...". 
+
+Eventually, I decided to google (one of the challenge sponsors btw) what options are there for image CTFs in general. That's when I found out about steganography. Though, analysis showed nothing hidden in the image. I got a hint from the organizers that I might be looking in the wrong place. So I tried running the analysis on the zipped folder itself. It also gave nothing. Already later at home, I opened the folder as a txt file and saw the flag.txt embedded there, but still didn't manage to extract it (unlike eight other teams).
+
+After wasting so much time on the picture, I wanted to spend the last hour productively and try a few more challenges there were left. To be honest, my brain was already super tired after 7 hours of nonstop puzzle solving, so I couldn't manage the Diffie-Hellman task (even though I literally have a [post](https://0xkrt26.github.io/math_behind_security/2026/06/09/the-story-of-the-hash-function.html) about their construction, so this had some potential). And another one simply required too much time, which I didn't have anymore.
+
+<br>
+
+### Short sum up
+
+I really liked the competition. Partially because my team got third place and a prize from another sponsor - Siemens. Also when I got home, I analysed the scoreboard again and noticed that even though I had the lowest score among my teammates, it was still bigger than the scores of some participants from the teams in second and first places, which means I wasn't that useless for the team either. All in all, I had a great Friday, met some interesting people, and got a cool sticker:)
